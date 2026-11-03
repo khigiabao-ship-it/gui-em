@@ -72,7 +72,8 @@
     .question-screen { padding:33px 0 12px; }
     .flower-art { width:97px; height:101px; margin:0 0 16px; }
     .question-screen h2 { font-size:clamp(21px,2.4vw,27px); max-width:540px; line-height:1.5; margin:12px auto 16px; text-wrap:pretty; }
-    .answer-zone { width:100%; position:relative; min-height:94px; margin-top:26px; display:flex; align-items:flex-start; justify-content:center; gap:12px; }
+    .answer-zone { width:100%; position:relative; min-height:122px; margin-top:26px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:16px; }
+    .no-slot { height:47px; width:100%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .yes { min-width:151px; }
     .no { min-width:107px; min-height:47px; background:#fffdf9; border:1px solid #decac6; border-radius:7px; padding:14px 18px; font-size:13px; color:#a88b8e; white-space:nowrap; touch-action:none; transition:box-shadow .15s; }
     .no:hover { box-shadow:0 3px 9px #8d646419; }
@@ -184,8 +185,8 @@
             <h2 id="question-title" tabindex="-1">Em làm người yêu<br>anh nhé?</h2>
             
             <div class="answer-zone" id="answer-zone">
+              <div class="no-slot" id="no-slot"><button class="no" id="no-button" type="button" aria-describedby="tease">Không</button></div>
               <button class="primary yes" id="yes-button" type="button">Em đồng ý <svg aria-hidden="true"><use href="#heart"/></svg></button>
-              <button class="no" id="no-button" type="button" aria-describedby="tease">Không</button>
             </div>
             <p class="tease" id="tease" role="status" aria-live="polite">Hình như nút “Không” hơi nhút nhát…</p>
           </section>
@@ -231,6 +232,7 @@
     let currentScreen = 'envelope';
     let escapeCount = 0;
     let lastEscape = 0;
+    let lastNoInteraction = -Infinity;
     let confettiFrame = 0;
     let toastTimer = 0;
     const noButton = $('no-button');
@@ -245,7 +247,7 @@
     if (CONFIG.question !== 'Em làm người yêu anh nhé?') $('question-title').textContent = CONFIG.question;
 
     function resetNoButton() {
-      $('answer-zone').append(noButton);
+      $('no-slot').append(noButton);
       noButton.classList.remove('is-roaming');
       noButton.style.removeProperty('left');
       noButton.style.removeProperty('top');
@@ -320,6 +322,7 @@
       if (event.cancelable) event.preventDefault();
       event.stopPropagation();
       const now = performance.now();
+      lastNoInteraction = now;
       if (now - lastEscape < 110) return;
       lastEscape = now;
       const rect = noButton.getBoundingClientRect();
@@ -358,6 +361,8 @@
     if (window.visualViewport) window.visualViewport.addEventListener('resize', keepNoInView);
 
     $('yes-button').addEventListener('click', () => {
+      // Bỏ qua cú bấm đúp còn sót lại ngay sau khi nút Không né đi.
+      if (performance.now() - lastNoInteraction < 650) return;
       const date = new Intl.DateTimeFormat('vi-VN', { day:'2-digit', month:'2-digit', year:'numeric' }).format(new Date());
       $('success-date').textContent = 'Ngày chúng mình bắt đầu · ' + date;
       showScreen('success');
