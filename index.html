@@ -118,6 +118,7 @@
     @media (max-width:360px) { .page { padding:20px 17px; } h1 { font-size:43px; } .card { padding:24px 18px; } .envelope-button { width:226px; height:158px; } .seal { left:91px; top:62px; } .yes { min-width:136px; } .no { min-width:96px; padding:14px; } .answer-zone { gap:9px; } }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
 
+    .sound[hidden] { display:none!important; }
   </style>
 </head>
 <body>
@@ -130,7 +131,7 @@
   <div class="page" id="page">
     <header class="topbar">
       <div class="brand"><svg aria-hidden="true"><use href="#heart-line"/></svg> gửi em.</div>
-      <button class="sound" id="sound-button" type="button" aria-pressed="false" aria-label="Bật nhạc nền"><svg aria-hidden="true"><use href="#sound-icon"/></svg><span id="sound-label">♫ Bật nhạc</span></button>
+      <button class="sound" id="sound-button" type="button" hidden aria-pressed="false" aria-label="Bật nhạc nền"><svg aria-hidden="true"><use href="#sound-icon"/></svg><span id="sound-label">♫ Bật nhạc</span></button>
     </header>
     <main>
       <section class="hero" aria-label="Lời mở đầu">
@@ -516,9 +517,8 @@
     });
     window.addEventListener('resize', () => { if (currentScreen === 'success') startLoveRain(); });
 
-    // Nhạc nền bằng HTMLAudioElement: chỉ có nút nhỏ trên thanh đầu trang, không có video.
-    // Để phát trên trang công khai, đặt tệp âm thanh được phép phân phối tên "nhac.mp3"
-    // ở thư mục gốc của repository.
+    // Nút bật nhạc chỉ xuất hiện khi đã có tệp âm thanh hợp lệ trên trang.
+    // Trình duyệt di động thường yêu cầu người xem chạm nút để phát âm thanh.
     const backgroundTrack = $('background-track');
     const musicButton = $('sound-button');
     const musicLabel = $('sound-label');
@@ -529,31 +529,27 @@
       musicButton.setAttribute('aria-label', playing ? 'Tạm dừng nhạc nền' : 'Bật nhạc nền');
       musicLabel.textContent = playing ? 'Ⅱ Tạm dừng nhạc' : '♫ Bật nhạc';
     }
-    async function playMusic(quiet = false) {
-      try {
-        await backgroundTrack.play();
-      } catch (err) {
-        if (!quiet) {
-          if (backgroundTrack.error || backgroundTrack.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
-            toast('Chưa có nhạc trên website. Cần bổ sung tệp nhac.mp3.');
-          } else {
-            toast('Chạm lại vào nút nhạc để bật âm thanh nhé ♫');
-          }
-        }
+    musicButton.addEventListener('click', async () => {
+      if (!backgroundTrack.paused) {
+        backgroundTrack.pause();
+      } else {
+        try { await backgroundTrack.play(); } catch (_) { /* Không che màn hình bằng thông báo. */ }
       }
       updateMusicLabel();
-    }
-    musicButton.addEventListener('click', () => {
-      if (backgroundTrack.paused) playMusic(false);
-      else { backgroundTrack.pause(); updateMusicLabel(); }
     });
     backgroundTrack.addEventListener('play', updateMusicLabel);
     backgroundTrack.addEventListener('pause', updateMusicLabel);
-    backgroundTrack.addEventListener('error', updateMusicLabel);
-    updateMusicLabel();
-    // Trình duyệt điện thoại thường chặn phát tự động có âm thanh.
-    // Thử phát khi mở trang; nếu bị chặn, người xem chỉ cần chạm nút nhạc.
-    window.addEventListener('load', () => { playMusic(true); }, { once:true });
+    backgroundTrack.addEventListener('error', () => { musicButton.hidden = true; });
+    async function checkAvailableAudio() {
+      try {
+        const response = await fetch(backgroundTrack.getAttribute('src'), { method:'HEAD', cache:'no-store' });
+        musicButton.hidden = !response.ok || !(/audio\//i.test(response.headers.get('content-type') || ''));
+      } catch (_) {
+        musicButton.hidden = true;
+      }
+      updateMusicLabel();
+    }
+    checkAvailableAudio();
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) { stopConfetti(); cancelAnimationFrame(rainFrame); rainFrame = 0; }
       else if (currentScreen === 'success' && !rainPaused) { rainPrevious = 0; if (!reduceMotion.matches) rainFrame = requestAnimationFrame(rainTick); }
