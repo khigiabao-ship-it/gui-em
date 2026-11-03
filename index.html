@@ -60,18 +60,18 @@
     .text-button { border:0; background:none; color:var(--rose); font-size:12px; padding:13px 10px; margin:14px 0 10px; display:flex; align-items:center; justify-content:center; gap:10px; }
     .text-button .arrow { transition:transform .2s; }
     .text-button:hover .arrow { transform:translateX(4px); }
-    .letter-screen { padding:28px 9px 16px; }
+    .letter-screen { padding:24px 4px 12px; }
     .letter-heart { width:36px; height:36px; color:#b57583; margin:10px 0 17px; }
     .greeting { font:italic 30px var(--serif); color:var(--rose); margin:0 0 20px; }
-    .letter-copy { font-size:14px; line-height:1.8; color:#816e70; margin:0 0 15px; max-width:370px; text-wrap:pretty; }
+    .letter-copy { font-size:14px; line-height:1.85; color:#816e70; margin:0 0 20px; max-width:540px; }
     .letter-copy strong { font-weight:400; color:var(--rose); }
     .signature { margin:11px 0 24px; font:italic 20px var(--serif); color:#976e78; }
     .primary { display:inline-flex; align-items:center; justify-content:center; gap:11px; border:1px solid var(--rose); border-radius:7px; background:var(--rose); color:#fff9f7; padding:14px 23px; font-size:13px; min-height:47px; box-shadow:0 6px 14px #a8435914; transition:background .2s,transform .2s; }
     .primary:hover { background:var(--rose-dark); transform:translateY(-2px); }
     .primary svg { width:15px; height:15px; }
-    .question-screen { padding:33px 0 12px; }
+    .question-screen { padding:20px 0 12px; }
     .flower-art { width:97px; height:101px; margin:0 0 16px; }
-    .question-screen h2 { font-size:clamp(21px,2.4vw,27px); max-width:540px; line-height:1.5; margin:12px auto 16px; text-wrap:pretty; }
+    .question-screen h2 { font-size:clamp(18px,2.1vw,25px); max-width:600px; line-height:1.52; margin:15px 0 16px; }
     .answer-zone { width:100%; position:relative; min-height:94px; margin-top:26px; display:flex; align-items:flex-start; justify-content:center; gap:12px; }
     .yes { min-width:151px; }
     .no { min-width:107px; min-height:47px; background:#fffdf9; border:1px solid #decac6; border-radius:7px; padding:14px 18px; font-size:13px; color:#a88b8e; white-space:nowrap; touch-action:none; transition:box-shadow .15s; }
@@ -82,7 +82,7 @@
     .yes-heart::before { content:""; position:absolute; inset:0; border-radius:50%; background:#f7e7e7; animation:pulse 3s ease-in-out infinite; }
     .yes-heart svg { position:absolute; width:62px; height:62px; inset:27px; color:var(--rose); }
     .success-screen { padding:22px 0 16px; }
-    .success-screen h2 { font-size:clamp(24px,3vw,31px); max-width:390px; line-height:1.4; margin:15px 0 17px; text-wrap:pretty; }
+    .success-screen h2 { font-size:clamp(25px,3vw,34px); max-width:550px; line-height:1.4; margin:15px 0 17px; }
     .success-copy { font-size:13px; line-height:1.9; color:#987e81; max-width:280px; margin:0 0 24px; }
     .success-tag { margin-top:17px; border:1px solid #e9d5d3; border-radius:30px; color:#9d6575; padding:8px 14px; font-size:10px; letter-spacing:.05em; background:#fbf3ee; }
     .success-screen .text-button { margin-top:13px; }
@@ -112,18 +112,11 @@
       main { grid-template-columns:1fr; padding:45px 0 34px; gap:34px; } .hero { text-align:center; } .eyebrow { justify-content:center; font-size:9px; letter-spacing:.16em; } .eyebrow::before { width:22px; }
       h1 { font-size:49px; line-height:1.12; margin:18px 0; } .intro { max-width:300px; margin:auto; font-size:12px; line-height:1.85; } .dedication { display:none; }
       .experience { width:min(440px,100%); margin:auto; } .card { min-height:515px; padding:26px 23px 23px; } .stamp { width:65px; height:65px; font-size:7px; right:-10px; top:-16px; }
-      .envelope-button { margin-top:40px; margin-bottom:25px; } .card-header { font-size:8px; } .letter-copy { font-size:13px; } .letter-screen { padding:26px 5px 9px; } .question-screen h2 { font-size:21px; max-width:100%; line-height:1.52; }
+      .envelope-button { margin-top:40px; margin-bottom:25px; } .card-header { font-size:8px; } .letter-copy { font-size:13px; } .letter-screen { padding:26px 5px 9px; } .question-screen h2 { font-size:clamp(17px,4.3vw,23px); }
       .page-footer { justify-content:center; font-size:9px; } .footer-right { display:none; } .petal-b { right:-13px; }
     }
     @media (max-width:360px) { .page { padding:20px 17px; } h1 { font-size:43px; } .card { padding:24px 18px; } .envelope-button { width:226px; height:158px; } .seal { left:91px; top:62px; } .yes { min-width:136px; } .no { min-width:96px; padding:14px; } .answer-zone { gap:9px; } }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
-
-    .sound[hidden] { display:none!important; }
-    .yt-music-panel[hidden] { display:none!important; }
-    .yt-music-panel { width:min(100%,340px); margin:20px auto 8px; padding:12px; border:1px solid #e7d7d2; border-radius:14px; background:#fffdf9; box-shadow:0 8px 25px #76565818; text-align:left; }
-    .yt-music-title { color:#873448; font-size:12px; letter-spacing:.02em; margin:0 0 10px; }
-    .yt-music-panel iframe { display:block; width:100%; height:210px; border:0; border-radius:8px; background:#241e20; }
-    .yt-music-note { margin:9px 0 0; color:#8b7779; font-size:11px; line-height:1.55; }
   </style>
 </head>
 <body>
@@ -136,18 +129,13 @@
   <div class="page" id="page">
     <header class="topbar">
       <div class="brand"><svg aria-hidden="true"><use href="#heart-line"/></svg> gửi em.</div>
-      <button class="sound" id="sound-button" type="button" aria-pressed="false" aria-label="Bật nhạc nền"><svg aria-hidden="true"><use href="#sound-icon"/></svg><span id="sound-label">♫ Mở nhạc</span></button>
+      <button class="sound" id="sound-button" type="button" aria-pressed="false" aria-label="Bật Tháp rơi tự do"><svg aria-hidden="true"><use href="#sound-icon"/></svg><span id="sound-label">Bật Tháp rơi tự do</span></button>
     </header>
     <main>
       <section class="hero" aria-label="Lời mở đầu">
         <div class="eyebrow">Có những điều, phải nói thành lời</div>
         <h1>Một lá thư nhỏ.<br>Một lời <em>thật lòng.</em></h1>
         <p class="intro">Giữa bao nhiêu điều muốn nói,<br>anh muốn bắt đầu bằng điều này.<br>Em dành cho anh một chút thời gian nhé?</p>
-        <section class="yt-music-panel" id="yt-music-panel" aria-label="Nhạc Tháp Rơi Tự Do" hidden>
-          <p class="yt-music-title">♫ Tháp Rơi Tự Do · LBI Lợi Bỉ</p>
-          <iframe id="yt-music-iframe" title="Video Tháp Rơi Tự Do từ YouTube" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          <p class="yt-music-note">Bấm Play để nghe nhạc, rồi cuộn xuống mở lá thư. Video nằm trong trang và không che nội dung.</p>
-        </section>
         <div class="dedication"><svg aria-hidden="true"><use href="#sprig"/></svg><span id="dedication">Dành cho một người rất đặc biệt.</span></div>
       </section>
       <section class="experience" aria-label="Lá thư dành cho em">
@@ -169,6 +157,7 @@
             <svg class="letter-heart" aria-hidden="true"><use href="#heart-line"/></svg>
             <h2 class="greeting" id="letter-title" tabindex="-1">Chào em,</h2>
             <p class="letter-copy" id="letter-paragraph-one">Manh biết không, anh nghĩ những lời nói thì chưa đủ chân thành để diễn tả hết cảm xúc của anh dành cho em. Em nhớ không, anh đã hứa sẽ để em trở thành người con gái hạnh phúc nhất đêm nay, vậy nên anh cũng phải làm gì đó cho tương xứng chứ nhỉ?</p>
+            
             <p class="letter-copy" id="letter-paragraph-three">Anh muốn nắm tay em, không chỉ là đi ăn, đi chơi, đi cf mà còn là đi hết quãng đời này cơ, nói ra thì thực sự rất dài nên hãy để anh từ từ làm cho em hiểu nhé?</p>
             <p class="signature" id="signature">Từ một người rất thích em ♡</p>
             <button class="primary" id="to-question" type="button">Anh có một câu hỏi… <span aria-hidden="true">→</span></button>
@@ -182,7 +171,7 @@
               <path d="m22 45 2 4 4 1-4 2-1 4-2-4-4-1 4-2Z" fill="#d1a2a8"/><path d="m91 78 1.5 3 3.5 1-3.5 1.5L91 87l-1-3.5-3-1.5 3-1Z" fill="#d1a2a8"/>
             </svg>
             <div class="little-label">Vậy nên, anh muốn hỏi…</div>
-            <h2 id="question-title" tabindex="-1">Em làm người yêu<br>anh nhé?</h2>
+            <h2 id="question-title" tabindex="-1">Liệu anh có thể trở thành người che nắng che mưa, dù là giữa trưa hay giông bão, để em có thể yên lòng mà ở cạnh anh được không? Anh muốn tất cả của em, muốn là người duy nhất biết mọi điều về em, muốn là người đầu tiên em nhớ tới mỗi khi gặp chuyện. Manh cho phép Gbao được ở cạnh em nhé?</h2>
             
             <div class="answer-zone" id="answer-zone">
               <button class="primary yes" id="yes-button" type="button">Em đồng ý <svg aria-hidden="true"><use href="#heart"/></svg></button>
@@ -207,7 +196,7 @@
   </div>
   <canvas id="love-rain" aria-hidden="true"></canvas>
   <canvas id="confetti" aria-hidden="true"></canvas>
-  
+  <audio id="background-track" preload="auto" loop></audio>
   <div class="toast" id="toast" role="status" hidden></div>
   <noscript><style>.page{display:none}</style><p class="noscript">Anh thích em. Em làm người yêu anh nhé? ♡<br><br>Bật JavaScript để mở lá thư đầy đủ.</p></noscript>
   <script>
@@ -216,7 +205,7 @@
     const CONFIG = {
       recipient: '', // Ví dụ: 'Linh'
       sender: '',    // Ví dụ: 'Bảo'
-      question: 'Liệu anh có thể trở thành người che nắng che mưa, dù là giữa trưa hay giông bão, để em có thể yên lòng mà ở cạnh anh được không? Anh muốn tất cả của em, muốn là người duy nhất biết mọi điều về em, muốn là người đầu tiên em nhớ tới mỗi khi gặp chuyện. Manh cho phép Gbao được ở cạnh em nhé?',
+      question: '',
       shareText: 'Em đồng ý làm người yêu anh rồi nhé! ♡',
       loveMessages: [
         'Anh yêu em',
@@ -224,6 +213,8 @@
         'Manh yêu Gbao nhiều lắm',
         "You're My Muse",
       ],
+      // Phát toàn bài đã cung cấp và tự lặp. Đặt file cùng thư mục index.html.
+      music: { src:'thap-roi-tu-do.mp3', startAt:0, endAt:0, volume:.45 },
     };
 
     const $ = (id) => document.getElementById(id);
@@ -243,7 +234,7 @@
       $('dedication').textContent = 'Dành riêng cho ' + CONFIG.recipient + '.';
     }
     if (CONFIG.sender) $('signature').textContent = 'Thương em, ' + CONFIG.sender + ' ♡';
-    if (CONFIG.question !== 'Em làm người yêu anh nhé?') $('question-title').textContent = CONFIG.question;
+    if (CONFIG.question) $('question-title').textContent = CONFIG.question;
 
     function resetNoButton() {
       $('answer-zone').append(noButton);
@@ -270,8 +261,8 @@
       heading.focus({ preventScroll: true });
     }
 
-    $('open-envelope').addEventListener('click', () => showScreen('letter'));
-    $('open-letter').addEventListener('click', () => showScreen('letter'));
+    $('open-envelope').addEventListener('click', () => { showScreen('letter'); startBackgroundMusic(); });
+    $('open-letter').addEventListener('click', () => { showScreen('letter'); startBackgroundMusic(); });
     $('to-question').addEventListener('click', () => showScreen('question'));
 
     function intersects(a, b, gap = 0) {
@@ -526,28 +517,103 @@
     });
     window.addEventListener('resize', () => { if (currentScreen === 'success') startLoveRain(); });
 
-    // YouTube hiển thị trực tiếp trong luồng trang, không có cửa sổ nổi hay nhạc ẩn.
-    const musicButton = $('sound-button');
-    const musicPanel = $('yt-music-panel');
-    const musicIframe = $('yt-music-iframe');
-    const musicLabel = $('sound-label');
-    const musicUrl = 'https://www.youtube.com/embed/HegSBovl24I?autoplay=0&loop=1&playlist=HegSBovl24I&playsinline=1&rel=0';
-    musicButton.addEventListener('click', () => {
-      if (musicPanel.hidden) {
-        musicPanel.hidden = false;
-        musicIframe.src = musicUrl;
-        musicButton.setAttribute('aria-pressed','true');
-        musicLabel.textContent = '♫ Đóng trình phát';
-        musicPanel.scrollIntoView({behavior: 'smooth',block:'center'});
-      } else {
-        musicPanel.hidden = true;
-        musicIframe.removeAttribute('src');
-        musicButton.setAttribute('aria-pressed','false');
-        musicLabel.textContent = '♫ Mở nhạc';
-      }
+    // Giai điệu tự tạo bằng Web Audio, chỉ phát khi người xem chủ động bật.
+    let audioContext;
+    let musicTimer;
+    let musicOn = false;
+    let musicStep = 0;
+    const backgroundTrack = $('background-track');
+    const hasMusicFile = typeof CONFIG.music.src === 'string' && CONFIG.music.src.trim().length > 0;
+    if (hasMusicFile) {
+      backgroundTrack.src = CONFIG.music.src;
+      backgroundTrack.volume = Math.min(1, Math.max(0, Number(CONFIG.music.volume) || .45));
+    }
+    function seekToChorus() {
+      const requested = Math.max(0, Number(CONFIG.music.startAt) || 0);
+      if (Number.isFinite(backgroundTrack.duration) && requested < backgroundTrack.duration) backgroundTrack.currentTime = requested;
+    }
+    backgroundTrack.addEventListener('loadedmetadata', seekToChorus);
+    backgroundTrack.addEventListener('timeupdate', () => {
+      const start = Math.max(0, Number(CONFIG.music.startAt) || 0);
+      const end = Number(CONFIG.music.endAt) || 0;
+      if (end > start && backgroundTrack.currentTime >= end) seekToChorus();
     });
+    backgroundTrack.addEventListener('ended', () => {
+      if (!musicOn) return;
+      seekToChorus();
+      backgroundTrack.play().catch(() => { stopMusic(); toast('Em bấm bật nhạc lại nhé.'); });
+    });
+    const voices = new Set();
+    const melody = [72,76,79,76,74,77,81,77,71,74,79,74,72,76,79,84,76,79,83,79,74,77,81,77,72,76,79,76,71,74,67,null];
+    function playNote(note, duration = 1.8, volume = .055) {
+      if (note === null || !audioContext || !musicOn) return;
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      oscillator.type = 'sine';
+      oscillator.frequency.value = 440 * 2 ** ((note - 69) / 12);
+      const now = audioContext.currentTime;
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(volume, now + .025);
+      gain.gain.exponentialRampToValueAtTime(.0001, now + duration);
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+      voices.add(oscillator);
+      oscillator.onended = () => { voices.delete(oscillator); oscillator.disconnect(); gain.disconnect(); };
+      oscillator.start(now);
+      oscillator.stop(now + duration + .05);
+    }
+    function updateMusicLabel() {
+      $('sound-button').setAttribute('aria-pressed', String(musicOn));
+      const name = hasMusicFile ? 'Tháp rơi tự do' : 'nhạc demo';
+      $('sound-button').setAttribute('aria-label', (musicOn ? 'Tắt ' : 'Bật ') + name);
+      $('sound-label').textContent = musicOn ? (hasMusicFile ? 'Đang phát · Tháp rơi tự do' : 'Đang phát nhạc demo') : (hasMusicFile ? 'Bật Tháp rơi tự do' : 'Bật nhạc demo');
+    }
+    function stopMusic() {
+      musicOn = false;
+      backgroundTrack.pause();
+      clearInterval(musicTimer);
+      for (const voice of voices) { try { voice.stop(); } catch (_) {} }
+      voices.clear();
+      updateMusicLabel();
+    }
+    async function startBackgroundMusic() {
+      if (musicOn || !hasMusicFile) return;
+      try {
+        musicOn = true;
+        await backgroundTrack.play();
+        updateMusicLabel();
+      } catch (_) { stopMusic(); }
+    }
+    $('sound-button').addEventListener('click', async () => {
+      if (musicOn) { stopMusic(); return; }
+      if (hasMusicFile) {
+        try {
+          musicOn = true;
+          if (backgroundTrack.ended) seekToChorus();
+          await backgroundTrack.play();
+          updateMusicLabel();
+        } catch (_) { stopMusic(); toast('Chưa phát được bản nhạc. Em thử bật lại nhé.'); }
+        return;
+      }
+      const AudioAPI = window.AudioContext || window.webkitAudioContext;
+      if (!AudioAPI) { toast('Trình duyệt này chưa hỗ trợ nhạc. Mình đọc thư nhé!'); return; }
+      try {
+        if (!audioContext) audioContext = new AudioAPI();
+        await audioContext.resume();
+        musicOn = true;
+        updateMusicLabel();
+        const tick = () => {
+          playNote(melody[musicStep % melody.length]);
+          if (musicStep % 4 === 0) playNote([48,53,55,48,52,53,48,55][Math.floor(musicStep / 4) % 8], 2.4, .028);
+          musicStep++;
+        };
+        tick();
+        musicTimer = setInterval(tick, 560);
+      } catch (_) { stopMusic(); toast('Chưa bật được nhạc. Em vẫn mở thư được nhé.'); }
+    });
+    updateMusicLabel();
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) { stopConfetti(); cancelAnimationFrame(rainFrame); rainFrame = 0; }
+      if (document.hidden) { stopMusic(); stopConfetti(); cancelAnimationFrame(rainFrame); rainFrame = 0; }
       else if (currentScreen === 'success' && !rainPaused) { rainPrevious = 0; if (!reduceMotion.matches) rainFrame = requestAnimationFrame(rainTick); }
     });
     reduceMotion.addEventListener?.('change', () => {
