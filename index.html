@@ -118,12 +118,6 @@
     @media (max-width:360px) { .page { padding:20px 17px; } h1 { font-size:43px; } .card { padding:24px 18px; } .envelope-button { width:226px; height:158px; } .seal { left:91px; top:62px; } .yes { min-width:136px; } .no { min-width:96px; padding:14px; } .answer-zone { gap:9px; } }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
 
-    .music-player { position:fixed; z-index:100; right:16px; bottom:16px; width:min(368px,calc(100vw - 32px)); padding:12px; border:1px solid #e7d7d2; border-radius:14px; background:#fffdf9; box-shadow:0 14px 52px #49383b33; }
-    .music-player[hidden] { display:none!important; }
-    .music-player-header { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:9px; color:#873448; font-size:13px; font-weight:600; }
-    .music-player-close { border:0; background:#f7e6e8; color:#873448; border-radius:40px; font-size:17px; line-height:1; padding:6px 10px; cursor:pointer; }
-    .music-player iframe { width:100%; aspect-ratio:16/9; min-height:200px; border:0; border-radius:8px; display:block; background:#241e20; }
-    .music-player-note { color:#8b7779; font-size:11px; line-height:1.5; margin:8px 0 0; }
   </style>
 </head>
 <body>
@@ -136,7 +130,7 @@
   <div class="page" id="page">
     <header class="topbar">
       <div class="brand"><svg aria-hidden="true"><use href="#heart-line"/></svg> gửi em.</div>
-      <button class="sound" id="sound-button" type="button" aria-pressed="false" aria-label="Mở bài Tháp Rơi Tự Do"><svg aria-hidden="true"><use href="#sound-icon"/></svg><span id="sound-label">♫ Tháp Rơi Tự Do</span></button>
+      <button class="sound" id="sound-button" type="button" aria-pressed="false" aria-label="Bật nhạc nền"><svg aria-hidden="true"><use href="#sound-icon"/></svg><span id="sound-label">♫ Bật nhạc</span></button>
     </header>
     <main>
       <section class="hero" aria-label="Lời mở đầu">
@@ -203,11 +197,7 @@
   </div>
   <canvas id="love-rain" aria-hidden="true"></canvas>
   <canvas id="confetti" aria-hidden="true"></canvas>
-  <section class="music-player" id="music-player" aria-label="Trình phát Tháp Rơi Tự Do" hidden>
-    <div class="music-player-header"><span>♫ Tháp Rơi Tự Do · LBI Lợi Bỉ</span><button type="button" id="music-close" class="music-player-close" aria-label="Đóng nhạc">×</button></div>
-    <iframe id="music-iframe" title="Tháp Rơi Tự Do, video chính thức từ Sony Music China" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" data-src="https://www.youtube.com/embed/HegSBovl24I?autoplay=1&amp;loop=1&amp;playlist=HegSBovl24I&amp;playsinline=1&amp;rel=0" allowfullscreen></iframe>
-    <p class="music-player-note">Bản chính thức từ Sony Music China. Nếu nhạc chưa tự chạy, bấm Play trên video. Khi phát xong, video sẽ tự lặp.</p>
-  </section>
+  <audio id="background-track" src="./nhac.mp3" preload="metadata" loop playsinline></audio>
   <div class="toast" id="toast" role="status" hidden></div>
   <noscript><style>.page{display:none}</style><p class="noscript">Anh thích em. Em làm người yêu anh nhé? ♡<br><br>Bật JavaScript để mở lá thư đầy đủ.</p></noscript>
   <script>
@@ -526,30 +516,42 @@
     });
     window.addEventListener('resize', () => { if (currentScreen === 'success') startLoveRain(); });
 
-    // Trình phát chính thức do YouTube cung cấp, không sao chép bản ghi âm.
-    let musicOn = false;
-    const musicPlayer = $('music-player');
-    const musicIframe = $('music-iframe');
+    // Nhạc nền bằng HTMLAudioElement: chỉ có nút nhỏ trên thanh đầu trang, không có video.
+    // Để phát trên trang công khai, đặt tệp âm thanh được phép phân phối tên "nhac.mp3"
+    // ở thư mục gốc của repository.
+    const backgroundTrack = $('background-track');
+    const musicButton = $('sound-button');
+    const musicLabel = $('sound-label');
+    backgroundTrack.volume = 0.6;
     function updateMusicLabel() {
-      $('sound-button').setAttribute('aria-pressed', String(musicOn));
-      $('sound-button').setAttribute('aria-label', musicOn ? 'Đóng trình phát Tháp Rơi Tự Do' : 'Mở bài Tháp Rơi Tự Do');
-      $('sound-label').textContent = musicOn ? 'Đóng trình phát ♫' : '♫ Tháp Rơi Tự Do';
+      const playing = !backgroundTrack.paused && !backgroundTrack.ended;
+      musicButton.setAttribute('aria-pressed', String(playing));
+      musicButton.setAttribute('aria-label', playing ? 'Tạm dừng nhạc nền' : 'Bật nhạc nền');
+      musicLabel.textContent = playing ? 'Ⅱ Tạm dừng nhạc' : '♫ Bật nhạc';
     }
-    function stopMusic() {
-      musicOn = false;
-      musicPlayer.hidden = true;
-      musicIframe.removeAttribute('src');
+    async function playMusic() {
+      try {
+        await backgroundTrack.play();
+      } catch (err) {
+        if (backgroundTrack.error || backgroundTrack.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+          showToast('Chưa có nhạc trên website. Cần thêm tệp nhac.mp3 vào GitHub.');
+        } else {
+          showToast('Nhấn nút nhạc để bật âm thanh nhé ♫');
+        }
+      }
       updateMusicLabel();
     }
-    $('sound-button').addEventListener('click', () => {
-      if (musicOn) { stopMusic(); return; }
-      musicOn = true;
-      musicPlayer.hidden = false;
-      musicIframe.src = musicIframe.dataset.src.replaceAll('&amp;', '&');
-      updateMusicLabel();
+    musicButton.addEventListener('click', () => {
+      if (backgroundTrack.paused) playMusic();
+      else { backgroundTrack.pause(); updateMusicLabel(); }
     });
-    $('music-close').addEventListener('click', stopMusic);
+    backgroundTrack.addEventListener('play', updateMusicLabel);
+    backgroundTrack.addEventListener('pause', updateMusicLabel);
+    backgroundTrack.addEventListener('error', updateMusicLabel);
     updateMusicLabel();
+    // Trình duyệt điện thoại thường chặn phát tự động có âm thanh.
+    // Thử phát khi mở trang; nếu bị chặn, người xem chỉ cần chạm nút nhạc.
+    window.addEventListener('load', () => { playMusic(); }, { once:true });
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) { stopConfetti(); cancelAnimationFrame(rainFrame); rainFrame = 0; }
       else if (currentScreen === 'success' && !rainPaused) { rainPrevious = 0; if (!reduceMotion.matches) rainFrame = requestAnimationFrame(rainTick); }
