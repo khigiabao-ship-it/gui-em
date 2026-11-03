@@ -78,9 +78,8 @@
     .no:hover { box-shadow:0 3px 9px #8d646419; }
     .no.is-roaming { position:fixed; z-index:20; margin:0; }
     .tease { min-height:31px; max-width:305px; margin:0; color:#ab7f87; font-family:var(--serif); font-style:italic; font-size:14px; line-height:1.5; }
-    .yes-heart { position:relative; height:116px; width:116px; margin:8px 0 15px; }
-    .yes-heart::before { content:""; position:absolute; inset:0; border-radius:50%; background:#f7e7e7; animation:pulse 3s ease-in-out infinite; }
-    .yes-heart svg { position:absolute; width:62px; height:62px; inset:27px; color:var(--rose); }
+    .yes-heart { position:relative; width:min(240px,100%); height:210px; margin:0 0 10px; flex-shrink:0; }
+    .yes-heart canvas { display:block; width:100%; height:100%; }
     .success-screen { padding:22px 0 16px; }
     .success-screen h2 { font-size:clamp(24px,3vw,31px); max-width:390px; line-height:1.4; margin:15px 0 17px; text-wrap:pretty; }
     .success-copy { font-size:13px; line-height:1.9; color:#987e81; max-width:280px; margin:0 0 24px; }
@@ -191,7 +190,7 @@
             <p class="tease" id="tease" role="status" aria-live="polite">Hình như nút “Không” hơi nhút nhát…</p>
           </section>
           <section class="screen success-screen" id="screen-success" aria-labelledby="success-title" hidden>
-            <div class="yes-heart"><svg aria-hidden="true"><use href="#heart"/></svg></div>
+            <div class="yes-heart" role="img" aria-label="Trái tim hạt sáng đang đập"><canvas id="particle-heart" aria-hidden="true"></canvas></div>
             <div class="little-label">Một khởi đầu thật đẹp</div>
             <h2 id="success-title" tabindex="-1">Thế là chúng mình chính thức có danh phận rồi nhé? Không được trêu anh nữa đâu</h2>
             <p class="success-copy">Cảm ơn em đã đồng ý.<br>Những ngày bình thường sắp tới,<br>anh muốn được cùng em làm chúng đặc biệt hơn.</p>
@@ -261,6 +260,7 @@
       if (name !== 'question') resetNoButton();
       if (name !== 'success') stopLoveRain();
       currentScreen = name;
+      if (name !== 'success') stopParticleHeart();
       screenNames.forEach((screen) => { $('screen-' + screen).hidden = screen !== name; });
       const step = screenNames.indexOf(name);
       [...$('progress').children].forEach((dot, i) => dot.classList.toggle('active', i === step));
@@ -362,6 +362,7 @@
       $('success-date').textContent = 'Ngày chúng mình bắt đầu · ' + date;
       showScreen('success');
       celebrate();
+      startParticleHeart();
       rainPaused = false;
       updateRainLabel();
       startLoveRain();
@@ -525,6 +526,82 @@
       else { rainPrevious = 0; rainFrame = requestAnimationFrame(rainTick); }
     });
     window.addEventListener('resize', () => { if (currentScreen === 'success') startLoveRain(); });
+
+
+    // Hạt bám đường cong trái tim, nở ra và tỏa sáng theo từng nhịp.
+    const heartCanvas = $('particle-heart');
+    const heartContext = heartCanvas.getContext('2d');
+    let heartFrame = 0;
+    let heartParticles = [];
+
+    function drawParticleHeart(time) {
+      if (!heartContext) return;
+      const width = 240;
+      const height = 210;
+      heartContext.clearRect(0, 0, width, height);
+      const phase = (time % 1400) / 1400;
+      const beat = reduceMotion.matches ? 0 : (
+        Math.exp(-Math.pow((phase - .12) / .065, 2)) +
+        .55 * Math.exp(-Math.pow((phase - .30) / .08, 2))
+      );
+      const scale = 5.1 * (1 + .12 * beat);
+      for (const particle of heartParticles) {
+        const angle = particle.angle;
+        const x = 16 * Math.pow(Math.sin(angle), 3);
+        const y = 13 * Math.cos(angle) - 5 * Math.cos(2 * angle) -
+          2 * Math.cos(3 * angle) - Math.cos(4 * angle);
+        const drift = reduceMotion.matches ? 0 : Math.sin(time / 650 + particle.phase);
+        const radius = particle.radius + drift * .018 + beat * particle.burst;
+        const px = width / 2 + x * scale * radius;
+        const py = 95 - y * scale * radius;
+        heartContext.globalAlpha = particle.opacity * (1 - Math.min(.5, beat * particle.burst));
+        heartContext.fillStyle = particle.color;
+        heartContext.beginPath();
+        heartContext.arc(px, py, particle.size * (1 + beat * .25), 0, Math.PI * 2);
+        heartContext.fill();
+      }
+      heartContext.globalAlpha = 1;
+    }
+
+    function stopParticleHeart() {
+      cancelAnimationFrame(heartFrame);
+      heartFrame = 0;
+    }
+
+    function startParticleHeart() {
+      stopParticleHeart();
+      if (!heartContext || currentScreen !== 'success' || document.hidden) return;
+      if (!heartParticles.length) {
+        const colors = ['#a84359', '#bf5f79', '#d67c99', '#e8a1b6'];
+        heartParticles = Array.from({ length:1600 }, (_, index) => ({
+          angle:Math.random() * Math.PI * 2,
+          radius:index < 1200 ? .92 + Math.random() * .16 : .55 + Math.random() * .7,
+          phase:Math.random() * Math.PI * 2,
+          burst:index < 1200 ? Math.random() * .04 : Math.random() * .18,
+          size:.35 + Math.random() * .85,
+          opacity:.25 + Math.random() * .65,
+          color:colors[index % colors.length],
+        }));
+      }
+      const ratio = Math.min(devicePixelRatio || 1, 2);
+      heartCanvas.width = 240 * ratio;
+      heartCanvas.height = 210 * ratio;
+      heartContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+      function tick(time) {
+        drawParticleHeart(time);
+        if (!reduceMotion.matches && currentScreen === 'success' && !document.hidden) {
+          heartFrame = requestAnimationFrame(tick);
+        }
+      }
+      tick(performance.now());
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopParticleHeart();
+      else if (currentScreen === 'success') startParticleHeart();
+    });
+    reduceMotion.addEventListener?.('change', () => {
+      if (currentScreen === 'success') startParticleHeart();
+    });
 
     // YouTube hiển thị trực tiếp trong luồng trang, không có cửa sổ nổi hay nhạc ẩn.
     const musicButton = $('sound-button');
