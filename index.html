@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8eeea">
+  <meta name="description" content="Một lá thư nhỏ, dành cho một người rất đặc biệt.">
+  <title>Gửi em — Một điều muốn nói</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23f8eeea'/%3E%3Cpath d='M32 49 12 29C0 14 22 4 32 21 42 4 64 14 52 29Z' fill='%23aa4b60'/%3E%3C/svg%3E">
+  <style>
+    :root { --paper:#fffdf9; --rose:#a84359; --rose-dark:#873448; --ink:#49383b; --muted:#8b7779; --line:#e7d7d2; --serif:Georgia,'Times New Roman',serif; }
+    * { box-sizing:border-box; }
+    [hidden] { display:none!important; }
+    html { min-height:100%; background:#f8eeea; }
+    body { margin:0; min-height:100svh; color:var(--ink); font-family:Arial,Helvetica,sans-serif; -webkit-font-smoothing:antialiased; }
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; z-index:-1; background:radial-gradient(ellipse at 88% 32%,#efc8cc69,transparent 43%),radial-gradient(ellipse at 5% 90%,#e6d8bd5c,transparent 45%); }
+    button { font:inherit; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+    button:focus-visible,a:focus-visible { outline:3px solid #b46979; outline-offset:6px; }
+    button:disabled { cursor:default; }
+    button,svg { flex-shrink:0; }
+    .page { width:min(1240px,100%); margin:auto; padding:32px 52px 24px; min-height:100svh; display:flex; flex-direction:column; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { display:flex; align-items:center; gap:10px; font-family:var(--serif); font-size:24px; font-style:italic; color:var(--rose); }
+    .brand svg { width:22px; height:22px; }
+    .sound { display:flex; align-items:center; gap:8px; background:#fff9; border:1px solid #e9d9d3; border-radius:30px; color:#7e6569; padding:10px 14px; font-size:11px; letter-spacing:.02em; }
+    .sound svg { width:15px; height:15px; }
+    main { flex:1; display:grid; grid-template-columns:.94fr 1.06fr; align-items:center; gap:56px; padding:52px 0 48px; }
+    .eyebrow { display:flex; align-items:center; gap:12px; font-size:10px; letter-spacing:.22em; font-weight:600; color:#96767a; text-transform:uppercase; }
+    .eyebrow::before { content:""; width:30px; height:1px; background:#bc8993; }
+    h1 { font-family:var(--serif); font-weight:400; font-size:clamp(54px,5.6vw,76px); line-height:1.13; letter-spacing:-.055em; margin:24px 0 25px; }
+    h1 em { color:var(--rose); font-weight:400; }
+    .intro { font-size:14px; line-height:1.95; max-width:337px; color:var(--muted); }
+    .dedication { display:flex; align-items:center; gap:12px; margin-top:38px; font-family:var(--serif); font-style:italic; font-size:17px; color:#937a7e; }
+    .dedication svg { width:35px; height:37px; transform:rotate(-12deg); }
+    .experience { position:relative; }
+    .card { position:relative; min-height:550px; background:var(--paper); border:1px solid #efdfd6; border-radius:7px; box-shadow:0 24px 65px -28px #9b686e40,0 3px 8px #70545505; display:flex; flex-direction:column; padding:28px 30px 25px; text-align:center; }
+    .card::before { content:""; position:absolute; inset:9px; border:1px solid #eadfd5; pointer-events:none; border-radius:2px; }
+    .card-header { position:relative; display:flex; justify-content:space-between; align-items:center; color:#a4928d; text-transform:uppercase; font-size:9px; letter-spacing:.14em; }
+    .card-header span:last-child { color:#aa6978; font-family:var(--serif); font-size:12px; font-style:italic; text-transform:none; letter-spacing:0; }
+    .screen { position:relative; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; animation:appear .55s ease both; }
+    .stamp { position:absolute; width:76px; height:76px; border:1px solid #c48b9699; border-radius:50%; top:-20px; right:-22px; transform:rotate(13deg); display:grid; place-content:center; gap:5px; font-size:8px; line-height:1.5; letter-spacing:.12em; color:#b57d87; background:#f9efeaee; z-index:2; box-shadow:0 0 0 4px #f9efea,0 0 0 5px #c48b962e; }
+    .stamp b { font-size:16px; font-weight:400; }
+    .envelope-button { display:block; width:268px; height:186px; padding:0; border:0; background:none; position:relative; margin:47px 0 29px; transition:transform .35s; }
+    .envelope-button:hover { transform:translateY(-5px) rotate(-2deg); }
+    .envelope { position:absolute; inset:0; background:#edc5c5; border-radius:5px; box-shadow:0 12px 24px -10px #a4686c40; overflow:hidden; }
+    .note-peek { position:absolute; top:13px; left:28px; right:28px; height:116px; background:#fffaf4; border-radius:3px; transform:rotate(-5deg); }
+    .note-peek::before { content:""; position:absolute; width:90px; height:1px; top:26px; left:30px; background:#d8bdb5; box-shadow:0 13px #e8d6cd,0 26px #e8d6cd; }
+    .envelope::after { content:""; position:absolute; inset:0; background:#f2d2d0; clip-path:polygon(0 0,50% 53%,100% 0,100% 100%,0 100%); }
+    .envelope-front { position:absolute; inset:0; z-index:1; background:#f7ded8; clip-path:polygon(0 100%,0 9%,50% 57%,100% 9%,100% 100%); }
+    .envelope-front::before { content:""; position:absolute; inset:0; background:#f9e3dc; clip-path:polygon(0 100%,50% 48%,100% 100%); }
+    .flap { position:absolute; inset:0; background:#eabfbe; clip-path:polygon(0 0,100% 0,50% 56%); z-index:2; }
+    .seal { display:grid; place-items:center; width:47px; height:47px; position:absolute; z-index:3; top:78px; left:110px; border-radius:48% 52% 45% 53%; background:#a95064; color:#f9dedc; box-shadow:0 3px 7px #70334630,inset 0 0 0 3px #ffffff13; }
+    .seal svg { width:21px; height:21px; }
+    .envelope-spark { position:absolute; color:#bb7a89; font:24px var(--serif); animation:float 4s ease-in-out infinite; }
+    .spark-one { top:-19px; right:6px; }
+    .spark-two { bottom:6px; left:-24px; font-size:17px; animation-delay:-2s; }
+    .little-label { color:#ab7b81; text-transform:uppercase; font-size:9px; letter-spacing:.18em; }
+    h2 { font-family:var(--serif); font-size:30px; line-height:1.3; font-weight:400; margin:13px 0 12px; letter-spacing:-.025em; }
+    .small-copy { font-size:12px; line-height:1.9; color:#9c8585; margin:0; }
+    .text-button { border:0; background:none; color:var(--rose); font-size:12px; padding:13px 10px; margin:14px 0 10px; display:flex; align-items:center; justify-content:center; gap:10px; }
+    .text-button .arrow { transition:transform .2s; }
+    .text-button:hover .arrow { transform:translateX(4px); }
+    .letter-screen { padding:28px 9px 16px; }
+    .letter-heart { width:36px; height:36px; color:#b57583; margin:10px 0 17px; }
+    .greeting { font:italic 30px var(--serif); color:var(--rose); margin:0 0 20px; }
+    .letter-copy { font-size:14px; line-height:1.95; color:#816e70; margin:0 0 13px; max-width:320px; }
+    .letter-copy strong { font-weight:400; color:var(--rose); }
+    .signature { margin:11px 0 24px; font:italic 20px var(--serif); color:#976e78; }
+    .primary { display:inline-flex; align-items:center; justify-content:center; gap:11px; border:1px solid var(--rose); border-radius:7px; background:var(--rose); color:#fff9f7; padding:14px 23px; font-size:13px; min-height:47px; box-shadow:0 6px 14px #a8435914; transition:background .2s,transform .2s; }
+    .primary:hover { background:var(--rose-dark); transform:translateY(-2px); }
+    .primary svg { width:15px; height:15px; }
+    .question-screen { padding:33px 0 12px; }
+    .flower-art { width:97px; height:101px; margin:0 0 16px; }
+    .question-screen h2 { font-size:34px; max-width:320px; line-height:1.25; margin:15px 0 16px; }
+    .answer-zone { width:100%; position:relative; min-height:94px; margin-top:26px; display:flex; align-items:flex-start; justify-content:center; gap:12px; }
+    .yes { min-width:151px; }
+    .no { min-width:107px; min-height:47px; background:#fffdf9; border:1px solid #decac6; border-radius:7px; padding:14px 18px; font-size:13px; color:#a88b8e; white-space:nowrap; touch-action:none; transition:box-shadow .15s; }
+    .no:hover { box-shadow:0 3px 9px #8d646419; }
+    .no.is-roaming { position:fixed; z-index:20; margin:0; }
+    .tease { min-height:31px; max-width:305px; margin:0; color:#ab7f87; font-family:var(--serif); font-style:italic; font-size:14px; line-height:1.5; }
+    .yes-heart { position:relative; height:116px; width:116px; margin:8px 0 15px; }
+    .yes-heart::before { content:""; position:absolute; inset:0; border-radius:50%; background:#f7e7e7; animation:pulse 3s ease-in-out infinite; }
+    .yes-heart svg { position:absolute; width:62px; height:62px; inset:27px; color:var(--rose); }
+    .success-screen { padding:22px 0 16px; }
+    .success-screen h2 { font-size:37px; max-width:320px; margin:15px 0 17px; }
+    .success-copy { font-size:13px; line-height:1.9; color:#987e81; max-width:280px; margin:0 0 24px; }
+    .success-tag { margin-top:17px; border:1px solid #e9d5d3; border-radius:30px; color:#9d6575; padding:8px 14px; font-size:10px; letter-spacing:.05em; background:#fbf3ee; }
+    .success-screen .text-button { margin-top:13px; }
+    .subtle-actions { display:flex; align-items:center; justify-content:center; gap:9px; flex-wrap:wrap; }
+    .subtle-actions .text-button { font-size:10px; padding:9px 5px; margin-bottom:0; }
+    .card-footer { display:flex; align-items:center; justify-content:center; gap:8px; min-height:17px; margin-top:18px; }
+    .dot { width:5px; height:5px; background:#e5d5d1; border-radius:50%; transition:all .4s; }
+    .dot.active { width:17px; border-radius:5px; background:#b77c89; }
+    .page-footer { display:flex; align-items:center; justify-content:space-between; color:#a38b8d; font-size:10px; letter-spacing:.04em; gap:20px; padding-top:7px; }
+    .footer-right { display:flex; align-items:center; gap:7px; }
+    .footer-right svg { width:12px; height:12px; color:#b87b88; }
+    .petal { position:absolute; width:13px; height:20px; border-radius:80% 0 80% 0; background:#dab0b24d; pointer-events:none; z-index:-1; }
+    .petal-a { top:23%; left:-25px; transform:rotate(35deg); }
+    .petal-b { bottom:10%; right:-25px; transform:rotate(170deg); width:20px; height:30px; }
+    .petal-c { bottom:-26px; left:30%; transform:rotate(80deg); width:10px; height:15px; }
+    #confetti { position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:30; }
+    #love-rain { position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:25; }
+    .toast { position:fixed; bottom:max(24px,env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); z-index:40; border:1px solid #e9d9d1; background:#fffdf9; box-shadow:0 8px 30px #76565820; color:#805762; border-radius:10px; font-size:12px; line-height:1.6; padding:12px 18px; max-width:calc(100vw - 32px); text-align:center; }
+    .noscript { max-width:480px; margin:25vh auto; padding:30px; text-align:center; }
+    @keyframes appear { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes float { 0%,100% { transform:translateY(0) rotate(-8deg); } 50% { transform:translateY(-7px) rotate(5deg); } }
+    @keyframes pulse { 0%,100% { transform:scale(.95); } 50% { transform:scale(1.05); } }
+    @media (min-width:1500px) { .page { max-width:1330px; } main { gap:90px; } .card { min-height:590px; } }
+    @media (max-width:900px) { .page { padding:27px 34px 22px; } main { gap:30px; } h1 { font-size:55px; } .card { padding:27px 23px 24px; } .envelope-button { width:245px; height:170px; } .seal { left:100px; top:70px; } .stamp { right:-14px; } }
+    @media (max-width:680px) {
+      .page { padding:22px 24px 24px; } .brand { font-size:23px; } .sound { font-size:10px; padding:9px 12px; }
+      main { grid-template-columns:1fr; padding:45px 0 34px; gap:34px; } .hero { text-align:center; } .eyebrow { justify-content:center; font-size:9px; letter-spacing:.16em; } .eyebrow::before { width:22px; }
+      h1 { font-size:49px; line-height:1.12; margin:18px 0; } .intro { max-width:300px; margin:auto; font-size:12px; line-height:1.85; } .dedication { display:none; }
+      .experience { width:min(440px,100%); margin:auto; } .card { min-height:515px; padding:26px 23px 23px; } .stamp { width:65px; height:65px; font-size:7px; right:-10px; top:-16px; }
+      .envelope-button { margin-top:40px; margin-bottom:25px; } .card-header { font-size:8px; } .letter-copy { font-size:13px; } .letter-screen { padding:26px 5px 9px; } .question-screen h2 { font-size:32px; }
+      .page-footer { justify-content:center; font-size:9px; } .footer-right { display:none; } .petal-b { right:-13px; }
+    }
+    @media (max-width:360px) { .page { padding:20px 17px; } h1 { font-size:43px; } .card { padding:24px 18px; } .envelope-button { width:226px; height:158px; } .seal { left:91px; top:62px; } .yes { min-width:136px; } .no { min-width:96px; padding:14px; } .answer-zone { gap:9px; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <symbol id="heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" fill="currentColor"/></symbol>
+    <symbol id="heart-line" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+    <symbol id="sprig" viewBox="0 0 40 48"><path d="M19 45c1-16 1-22 6-36M21 32c-11-1-14-9-14-9 10-1 14 5 14 9ZM23 24c10 0 14-7 14-7-10-2-14 3-14 7ZM24 17C15 14 15 7 15 7c8 0 10 6 9 10Z" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M24 10c-2-7 4-10 4-10 4 5 2 9-4 10Z" fill="currentColor" opacity=".6"/></symbol>
+    <symbol id="sound-icon" viewBox="0 0 24 24"><path d="m3 9 5 0 5-4v14l-5-4H3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path class="sound-waves" d="M17 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  </svg>
+  <div class="page" id="page">
+    <header class="topbar">
+      <div class="brand"><svg aria-hidden="true"><use href="#heart-line"/></svg> gửi em.</div>
+      <button class="sound" id="sound-button" type="button" aria-pressed="false" aria-label="Bật nhạc demo"><svg aria-hidden="true"><use href="#sound-icon"/></svg><span id="sound-label">Bật nhạc demo</span></button>
+    </header>
+    <main>
+      <section class="hero" aria-label="Lời mở đầu">
+        <div class="eyebrow">Có những điều, phải nói thành lời</div>
+        <h1>Một lá thư nhỏ.<br>Một lời <em>thật lòng.</em></h1>
+        <p class="intro">Giữa bao nhiêu điều muốn nói,<br>anh muốn bắt đầu bằng điều này.<br>Em dành cho anh một chút thời gian nhé?</p>
+        <div class="dedication"><svg aria-hidden="true"><use href="#sprig"/></svg><span id="dedication">Dành cho một người rất đặc biệt.</span></div>
+      </section>
+      <section class="experience" aria-label="Lá thư dành cho em">
+        <span class="petal petal-a"></span><span class="petal petal-b"></span><span class="petal petal-c"></span>
+        <div class="stamp" aria-hidden="true"><span>CHỈ GỬI EM</span><b>♡</b><span>WITH LOVE</span></div>
+        <div class="card">
+          <div class="card-header"><span>Một điều muốn nói</span><span id="recipient-label">To: một người đặc biệt</span></div>
+          <section class="screen" id="screen-envelope" aria-labelledby="envelope-title">
+            <button class="envelope-button" id="open-envelope" aria-label="Mở lá thư" type="button">
+              <span class="envelope"><span class="note-peek"></span><span class="envelope-front"></span><span class="flap"></span><span class="seal"><svg aria-hidden="true"><use href="#heart"/></svg></span></span>
+              <span class="envelope-spark spark-one" aria-hidden="true">✧</span><span class="envelope-spark spark-two" aria-hidden="true">✧</span>
+            </button>
+            <div class="little-label">Có một lá thư dành cho em</div>
+            <h2 id="envelope-title" tabindex="-1">Em mở ra nhé?</h2>
+            <p class="small-copy">Không dài đâu.<br>Chỉ là những điều anh đã muốn nói từ lâu.</p>
+            <button class="text-button" id="open-letter" type="button">Mở lá thư <span class="arrow" aria-hidden="true">→</span></button>
+          </section>
+          <section class="screen letter-screen" id="screen-letter" aria-labelledby="letter-title" hidden>
+            <svg class="letter-heart" aria-hidden="true"><use href="#heart-line"/></svg>
+            <h2 class="greeting" id="letter-title" tabindex="-1">Chào em,</h2>
+            <p class="letter-copy" id="letter-paragraph-one">Anh đã nghĩ mãi về cách nói ra điều này.<br>Cuối cùng, anh chọn một lá thư nhỏ.</p>
+            <p class="letter-copy" id="letter-paragraph-two">Vì có một điều anh biết rất rõ:<br><strong>anh thích em, nhiều hơn một chút rồi.</strong></p>
+            <p class="letter-copy" id="letter-paragraph-three">Anh muốn được cùng em đi ăn, đi dạo,<br>và nghe em kể cả những chuyện nhỏ mỗi ngày.</p>
+            <p class="signature" id="signature">Từ một người rất thích em ♡</p>
+            <button class="primary" id="to-question" type="button">Anh có một câu hỏi… <span aria-hidden="true">→</span></button>
+          </section>
+          <section class="screen question-screen" id="screen-question" aria-labelledby="question-title" hidden>
+            <svg class="flower-art" viewBox="0 0 110 116" fill="none" aria-hidden="true">
+              <path d="M51 108c-2-17 2-35 7-59m-6 41C35 88 26 77 26 77c17-3 25 6 26 13Zm4-17c16-1 25-12 25-12-15-1-23 7-25 12Z" stroke="#8d9a7d" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M58 53C35 48 25 29 37 23c-2-16 17-22 24-9 14-9 29 4 21 15 12 12-2 29-24 24Z" fill="#efd0d1" stroke="#c58898" stroke-width="1.1"/>
+              <path d="M37 23c7 2 13 10 21 30m3-39c-6 7-6 20-3 39m24-24c-12 1-19 12-24 24" stroke="#c58898" stroke-width="1.1"/>
+              <path d="m56 56-8-9m8 9 11-9" stroke="#8d9a7d" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="m22 45 2 4 4 1-4 2-1 4-2-4-4-1 4-2Z" fill="#d1a2a8"/><path d="m91 78 1.5 3 3.5 1-3.5 1.5L91 87l-1-3.5-3-1.5 3-1Z" fill="#d1a2a8"/>
+            </svg>
+            <div class="little-label">Vậy nên, anh muốn hỏi…</div>
+            <h2 id="question-title" tabindex="-1">Em làm người yêu<br>anh nhé?</h2>
+            <p class="small-copy">Cho anh một cơ hội được ở bên em.</p>
+            <div class="answer-zone" id="answer-zone">
+              <button class="primary yes" id="yes-button" type="button">Em đồng ý <svg aria-hidden="true"><use href="#heart"/></svg></button>
+              <button class="no" id="no-button" type="button" aria-describedby="tease">Không</button>
+            </div>
+            <p class="tease" id="tease" role="status" aria-live="polite">Hình như nút “Không” hơi nhút nhát…</p>
+          </section>
+          <section class="screen success-screen" id="screen-success" aria-labelledby="success-title" hidden>
+            <div class="yes-heart"><svg aria-hidden="true"><use href="#heart"/></svg></div>
+            <div class="little-label">Một khởi đầu thật đẹp</div>
+            <h2 id="success-title" tabindex="-1">Vậy là…<br>chúng mình nhé!</h2>
+            <p class="success-copy">Cảm ơn em đã đồng ý.<br>Những ngày bình thường sắp tới,<br>anh muốn được cùng em làm chúng đặc biệt hơn.</p>
+            <button class="primary" id="share-button" type="button">Gửi anh lời đồng ý <svg aria-hidden="true"><use href="#heart-line"/></svg></button>
+            <div class="success-tag" id="success-date"></div>
+            <div class="subtle-actions"><button class="text-button" id="replay-button" type="button">Đọc lại lá thư <span aria-hidden="true">↺</span></button><button class="text-button" id="rain-toggle" type="button" aria-pressed="false">Tạm dừng mưa chữ <span aria-hidden="true">Ⅱ</span></button></div>
+          </section>
+          <div class="card-footer" id="progress" aria-label="Trang 1 trên 4"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+      </section>
+    </main>
+    <footer class="page-footer"><span>Một chút can đảm, gửi đến người anh thương.</span><span class="footer-right">Made with a little courage <svg aria-hidden="true"><use href="#heart-line"/></svg></span></footer>
+  </div>
+  <canvas id="love-rain" aria-hidden="true"></canvas>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <audio id="background-track" preload="none"></audio>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <noscript><style>.page{display:none}</style><p class="noscript">Anh thích em. Em làm người yêu anh nhé? ♡<br><br>Bật JavaScript để mở lá thư đầy đủ.</p></noscript>
+  <script>
+    'use strict';
+    // Đổi nội dung tại đây. Không cần cài thư viện hay máy chủ.
+    const CONFIG = {
+      recipient: '', // Ví dụ: 'Linh'
+      sender: '',    // Ví dụ: 'Bảo'
+      question: 'Em làm người yêu anh nhé?',
+      shareText: 'Em đồng ý làm người yêu anh rồi nhé! ♡',
+      loveMessages: [
+        'Anh yêu em',
+        'Gbao là của Manh',
+        'Manh yêu Gbao nhiều lắm',
+        "You're My Muse",
+      ],
+      // Gắn file nhạc được cung cấp vào src. File đã cắt điệp khúc: startAt/endAt = 0.
+      // Để trống src sẽ phát nhạc piano demo, không phải bài Tháp rơi tự do.
+      music: { src:'', startAt:0, endAt:0, volume:.45 },
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const screenNames = ['envelope', 'letter', 'question', 'success'];
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let currentScreen = 'envelope';
+    let escapeCount = 0;
+    let lastEscape = 0;
+    let confettiFrame = 0;
+    let toastTimer = 0;
+    const noButton = $('no-button');
+
+    // Chỉ dùng textContent để tên riêng luôn được coi là văn bản.
+    if (CONFIG.recipient) {
+      $('recipient-label').textContent = 'To: ' + CONFIG.recipient;
+      $('letter-title').textContent = 'Chào ' + CONFIG.recipient + ',';
+      $('dedication').textContent = 'Dành riêng cho ' + CONFIG.recipient + '.';
+    }
+    if (CONFIG.sender) $('signature').textContent = 'Thương em, ' + CONFIG.sender + ' ♡';
+    if (CONFIG.question !== 'Em làm người yêu anh nhé?') $('question-title').textContent = CONFIG.question;
+
+    function resetNoButton() {
+      $('answer-zone').append(noButton);
+      noButton.classList.remove('is-roaming');
+      noButton.style.removeProperty('left');
+      noButton.style.removeProperty('top');
+      noButton.hidden = false;
+      escapeCount = 0;
+      lastEscape = 0;
+      $('tease').textContent = 'Hình như nút “Không” hơi nhút nhát…';
+    }
+
+    function showScreen(name) {
+      if (!screenNames.includes(name)) return;
+      if (name !== 'question') resetNoButton();
+      if (name !== 'success') stopLoveRain();
+      currentScreen = name;
+      screenNames.forEach((screen) => { $('screen-' + screen).hidden = screen !== name; });
+      const step = screenNames.indexOf(name);
+      [...$('progress').children].forEach((dot, i) => dot.classList.toggle('active', i === step));
+      $('progress').setAttribute('aria-label', 'Trang ' + (step + 1) + ' trên 4');
+      // Đặt tiêu điểm vào nội dung mới để dùng được bằng bàn phím và trình đọc màn hình.
+      const heading = $('screen-' + name).querySelector('h2');
+      heading.focus({ preventScroll: true });
+    }
+
+    $('open-envelope').addEventListener('click', () => showScreen('letter'));
+    $('open-letter').addEventListener('click', () => showScreen('letter'));
+    $('to-question').addEventListener('click', () => showScreen('question'));
+
+    function intersects(a, b, gap = 0) {
+      return a.x < b.x + b.width + gap && a.x + a.width + gap > b.x &&
+        a.y < b.y + b.height + gap && a.y + a.height + gap > b.y;
+    }
+
+    // Chọn vị trí trong màn hình, tránh nút Đồng ý, nhạc và vị trí con trỏ.
+    // Có tìm kiếm theo lưới dự phòng để không phụ thuộc may rủi trên màn hình nhỏ.
+    function findEscapePosition(width, height, pointerX, pointerY) {
+      const viewport = window.visualViewport;
+      const viewportWidth = viewport ? viewport.width : window.innerWidth;
+      const viewportHeight = viewport ? viewport.height : window.innerHeight;
+      const offsetX = viewport ? viewport.offsetLeft : 0;
+      const offsetY = viewport ? viewport.offsetTop : 0;
+      const margin = 16;
+      const minX = offsetX + margin;
+      const minY = offsetY + margin;
+      const maxX = Math.max(minX, offsetX + viewportWidth - width - margin);
+      const maxY = Math.max(minY, offsetY + viewportHeight - height - margin);
+      const old = noButton.getBoundingClientRect();
+      const blocked = [$('yes-button'), $('sound-button')].map((el) => {
+        const r = el.getBoundingClientRect();
+        return { x:r.left, y:r.top, width:r.width, height:r.height };
+      });
+      const candidates = [];
+      for (let i = 0; i < 65; i++) candidates.push({ x:minX + Math.random() * (maxX - minX), y:minY + Math.random() * (maxY - minY) });
+      for (let ix = 0; ix < 7; ix++) for (let iy = 0; iy < 9; iy++) candidates.push({ x:minX + (maxX - minX) * ix / 6, y:minY + (maxY - minY) * iy / 8 });
+      let best = candidates[0];
+      let bestScore = -Infinity;
+      for (const candidate of candidates) {
+        const rect = { ...candidate, width, height };
+        const centerX = candidate.x + width / 2;
+        const centerY = candidate.y + height / 2;
+        const pointerDistance = Math.hypot(centerX - pointerX, centerY - pointerY);
+        const moveDistance = Math.hypot(candidate.x - old.left, candidate.y - old.top);
+        const collision = blocked.some((block) => intersects(rect, block, 18));
+        const score = pointerDistance + Math.min(moveDistance, 180) * .4 - (collision ? 100000 : 0);
+        if (score > bestScore) { best = candidate; bestScore = score; }
+      }
+      return best;
+    }
+
+    function escapeNo(event) {
+      if (currentScreen !== 'question') return;
+      if (event.cancelable) event.preventDefault();
+      event.stopPropagation();
+      const now = performance.now();
+      if (now - lastEscape < 110) return;
+      lastEscape = now;
+      const rect = noButton.getBoundingClientRect();
+      const pointX = Number.isFinite(event.clientX) ? event.clientX : rect.left + rect.width / 2;
+      const pointY = Number.isFinite(event.clientY) ? event.clientY : rect.top + rect.height / 2;
+      const position = findEscapePosition(rect.width, rect.height, pointX, pointY);
+      // Đưa nút ra ngoài khung có animation để fixed luôn bám màn hình.
+      if (noButton.parentElement !== document.body) document.body.append(noButton);
+      noButton.classList.add('is-roaming');
+      noButton.style.left = position.x + 'px';
+      noButton.style.top = position.y + 'px';
+      escapeCount++;
+      const messages = [
+        'Ơ, nút “Không” vừa chạy mất rồi…',
+        'Đừng đuổi nữa, nó ngại đấy :))',
+        'Anh cũng hồi hộp như cái nút này vậy.',
+        'Một cái nút rất kiên trì chạy trốn…',
+        'Hay mình thử nút màu hồng xem sao? ♡',
+      ];
+      $('tease').textContent = messages[(escapeCount - 1) % messages.length];
+    }
+    // Pointer Events xử lý chuột, bút và cảm ứng. Click là dự phòng cho bàn phím.
+    noButton.addEventListener('pointerenter', (event) => { if (event.pointerType !== 'touch') escapeNo(event); });
+    noButton.addEventListener('pointerdown', escapeNo);
+    noButton.addEventListener('click', escapeNo);
+    noButton.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') escapeNo(event); });
+
+    function keepNoInView() {
+      if (!noButton.classList.contains('is-roaming') || currentScreen !== 'question') return;
+      const r = noButton.getBoundingClientRect();
+      const position = findEscapePosition(r.width, r.height, r.left, r.top);
+      noButton.style.left = position.x + 'px';
+      noButton.style.top = position.y + 'px';
+    }
+    window.addEventListener('resize', keepNoInView);
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', keepNoInView);
+
+    $('yes-button').addEventListener('click', () => {
+      const date = new Intl.DateTimeFormat('vi-VN', { day:'2-digit', month:'2-digit', year:'numeric' }).format(new Date());
+      $('success-date').textContent = 'Ngày chúng mình bắt đầu · ' + date;
+      showScreen('success');
+      celebrate();
+      rainPaused = false;
+      updateRainLabel();
+      startLoveRain();
+    });
+    $('replay-button').addEventListener('click', () => { stopConfetti(); showScreen('envelope'); });
+
+    function toast(message) {
+      clearTimeout(toastTimer);
+      $('toast').textContent = message;
+      $('toast').hidden = false;
+      toastTimer = setTimeout(() => { $('toast').hidden = true; }, 4300);
+    }
+    $('share-button').addEventListener('click', async () => {
+      const message = CONFIG.shareText;
+      if (navigator.share) {
+        try { await navigator.share({ text:message }); return; }
+        catch (error) { if (error.name === 'AbortError') return; }
+      }
+      try {
+        if (!navigator.clipboard || !window.isSecureContext) throw new Error('Clipboard unavailable');
+        await navigator.clipboard.writeText(message);
+        toast('Đã chép lời đồng ý. Em dán vào tin nhắn gửi anh nhé! ♡');
+      } catch (_) {
+        toast('Em chụp màn hình này gửi anh nhé! ♡');
+      }
+    });
+
+    function stopConfetti() {
+      cancelAnimationFrame(confettiFrame);
+      confettiFrame = 0;
+      const canvas = $('confetti');
+      canvas.getContext('2d')?.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    function celebrate() {
+      stopConfetti();
+      if (reduceMotion.matches) return;
+      const canvas = $('confetti');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      const width = innerWidth;
+      const height = innerHeight;
+      const scale = Math.min(devicePixelRatio || 1, 2);
+      canvas.width = width * scale;
+      canvas.height = height * scale;
+      ctx.setTransform(scale, 0, 0, scale, 0, 0);
+      const colors = ['#a84359', '#d39b9e', '#dfbe91', '#c9c7ab', '#edccc4'];
+      const pieces = Array.from({ length:100 }, () => ({ x:width / 2, y:height * .48, vx:(Math.random() - .5) * 12, vy:-3 - Math.random() * 12, size:3 + Math.random() * 5, angle:Math.random() * 6.3, spin:(Math.random() - .5) * .2, color:colors[Math.floor(Math.random() * colors.length)] }));
+      let start = 0;
+      let previous = 0;
+      function frame(time) {
+        if (!start) start = time;
+        const delta = Math.min((time - (previous || time)) / 16.67, 2) || 1;
+        previous = time;
+        ctx.clearRect(0, 0, width, height);
+        ctx.globalAlpha = Math.min(1, Math.max(0, (4300 - (time - start)) / 900));
+        for (const piece of pieces) {
+          piece.x += piece.vx * delta;
+          piece.y += piece.vy * delta;
+          piece.vy += .12 * delta;
+          piece.angle += piece.spin * delta;
+          ctx.save();
+          ctx.translate(piece.x, piece.y);
+          ctx.rotate(piece.angle);
+          ctx.fillStyle = piece.color;
+          ctx.fillRect(-piece.size / 2, -piece.size / 2, piece.size, piece.size * 1.7);
+          ctx.restore();
+        }
+        if (time - start < 4300) confettiFrame = requestAnimationFrame(frame);
+        else stopConfetti();
+      }
+      confettiFrame = requestAnimationFrame(frame);
+    }
+
+    // Mưa chữ: vẽ bằng canvas để số phần tử DOM không tăng theo thời gian.
+    let rainFrame = 0;
+    let rainPaused = false;
+    let rainPieces = [];
+    let rainWidth = 0;
+    let rainHeight = 0;
+    let rainPrevious = 0;
+    const rainCanvas = $('love-rain');
+    const rainContext = rainCanvas.getContext('2d');
+    function prepareLoveRain() {
+      if (!rainContext) return;
+      rainWidth = innerWidth;
+      rainHeight = innerHeight;
+      const scale = Math.min(devicePixelRatio || 1, 2);
+      rainCanvas.width = rainWidth * scale;
+      rainCanvas.height = rainHeight * scale;
+      rainContext.setTransform(scale, 0, 0, scale, 0, 0);
+      const messages = CONFIG.loveMessages.filter(text => typeof text === 'string' && text.length);
+      if (!messages.length) { rainPieces = []; return; }
+      const count = rainWidth < 680 ? 15 : 29;
+      rainPieces = Array.from({ length:count }, (_, i) => {
+        const size = rainWidth < 680 ? 13 + Math.random() * 5 : 16 + Math.random() * 8;
+        const text = messages[i % messages.length];
+        rainContext.font = 'italic ' + size + 'px Georgia, serif';
+        const textWidth = rainContext.measureText(text).width;
+        return {
+          text, size, textWidth,
+          x:10 + Math.random() * Math.max(0, rainWidth - textWidth - 20),
+          y:(i / count) * (rainHeight + 250) - 180,
+          speed:26 + Math.random() * 31,
+          sway:4 + Math.random() * 8,
+          phase:Math.random() * Math.PI * 2,
+          opacity:.42 + Math.random() * .25,
+        };
+      });
+    }
+    function drawLoveRain(time, animate) {
+      if (!rainContext) return;
+      const delta = rainPrevious ? Math.min((time - rainPrevious) / 1000, .05) : 0;
+      rainPrevious = time;
+      rainContext.clearRect(0, 0, rainWidth, rainHeight);
+      // Giảm độ đậm khi chữ đi ngang lời nhắn chính để vẫn đọc được nội dung.
+      const reading = $('screen-success').getBoundingClientRect();
+      for (const piece of rainPieces) {
+        if (animate) piece.y += piece.speed * delta;
+        if (piece.y > rainHeight + 35) {
+          piece.y = -35 - Math.random() * 130;
+          piece.x = 10 + Math.random() * Math.max(0, rainWidth - piece.textWidth - 20);
+        }
+        const x = Math.max(6, Math.min(rainWidth - piece.textWidth - 6, piece.x + Math.sin(time / 2500 + piece.phase) * piece.sway));
+        const behindReading = piece.y > reading.top && piece.y < reading.bottom && x + piece.textWidth > reading.left && x < reading.right;
+        rainContext.fillStyle = '#e5a8bd';
+        rainContext.globalAlpha = piece.opacity * (behindReading ? .25 : 1);
+        rainContext.font = 'italic ' + piece.size + 'px Georgia, serif';
+        rainContext.fillText(piece.text, x, piece.y);
+      }
+      rainContext.globalAlpha = 1;
+    }
+    function rainTick(time) {
+      rainFrame = 0;
+      if (currentScreen !== 'success' || rainPaused || document.hidden || reduceMotion.matches) return;
+      drawLoveRain(time, true);
+      rainFrame = requestAnimationFrame(rainTick);
+    }
+    function startLoveRain() {
+      if (!rainContext || currentScreen !== 'success') return;
+      cancelAnimationFrame(rainFrame);
+      rainPrevious = 0;
+      prepareLoveRain();
+      drawLoveRain(performance.now(), false);
+      if (!rainPaused && !reduceMotion.matches && !document.hidden) rainFrame = requestAnimationFrame(rainTick);
+    }
+    function stopLoveRain() {
+      cancelAnimationFrame(rainFrame);
+      rainFrame = 0;
+      rainPrevious = 0;
+      rainContext?.clearRect(0, 0, rainWidth, rainHeight);
+    }
+    function updateRainLabel() {
+      $('rain-toggle').textContent = rainPaused ? 'Cho chữ rơi tiếp ♡' : 'Tạm dừng mưa chữ Ⅱ';
+      $('rain-toggle').setAttribute('aria-pressed', String(rainPaused));
+      $('rain-toggle').hidden = reduceMotion.matches;
+    }
+    $('rain-toggle').addEventListener('click', () => {
+      rainPaused = !rainPaused;
+      updateRainLabel();
+      if (rainPaused) { cancelAnimationFrame(rainFrame); rainFrame = 0; }
+      else { rainPrevious = 0; rainFrame = requestAnimationFrame(rainTick); }
+    });
+    window.addEventListener('resize', () => { if (currentScreen === 'success') startLoveRain(); });
+
+    // Giai điệu tự tạo bằng Web Audio, chỉ phát khi người xem chủ động bật.
+    let audioContext;
+    let musicTimer;
+    let musicOn = false;
+    let musicStep = 0;
+    const backgroundTrack = $('background-track');
+    const hasMusicFile = typeof CONFIG.music.src === 'string' && CONFIG.music.src.trim().length > 0;
+    if (hasMusicFile) {
+      backgroundTrack.src = CONFIG.music.src;
+      backgroundTrack.volume = Math.min(1, Math.max(0, Number(CONFIG.music.volume) || .45));
+    }
+    function seekToChorus() {
+      const requested = Math.max(0, Number(CONFIG.music.startAt) || 0);
+      if (Number.isFinite(backgroundTrack.duration) && requested < backgroundTrack.duration) backgroundTrack.currentTime = requested;
+    }
+    backgroundTrack.addEventListener('loadedmetadata', seekToChorus);
+    backgroundTrack.addEventListener('timeupdate', () => {
+      const start = Math.max(0, Number(CONFIG.music.startAt) || 0);
+      const end = Number(CONFIG.music.endAt) || 0;
+      if (end > start && backgroundTrack.currentTime >= end) seekToChorus();
+    });
+    backgroundTrack.addEventListener('ended', () => {
+      if (!musicOn) return;
+      seekToChorus();
+      backgroundTrack.play().catch(() => { stopMusic(); toast('Em bấm bật nhạc lại nhé.'); });
+    });
+    const voices = new Set();
+    const melody = [72,76,79,76,74,77,81,77,71,74,79,74,72,76,79,84,76,79,83,79,74,77,81,77,72,76,79,76,71,74,67,null];
+    function playNote(note, duration = 1.8, volume = .055) {
+      if (note === null || !audioContext || !musicOn) return;
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      oscillator.type = 'sine';
+      oscillator.frequency.value = 440 * 2 ** ((note - 69) / 12);
+      const now = audioContext.currentTime;
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(volume, now + .025);
+      gain.gain.exponentialRampToValueAtTime(.0001, now + duration);
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+      voices.add(oscillator);
+      oscillator.onended = () => { voices.delete(oscillator); oscillator.disconnect(); gain.disconnect(); };
+      oscillator.start(now);
+      oscillator.stop(now + duration + .05);
+    }
+    function updateMusicLabel() {
+      $('sound-button').setAttribute('aria-pressed', String(musicOn));
+      const name = hasMusicFile ? 'Tháp rơi tự do' : 'nhạc demo';
+      $('sound-button').setAttribute('aria-label', (musicOn ? 'Tắt ' : 'Bật ') + name);
+      $('sound-label').textContent = musicOn ? (hasMusicFile ? 'Đang phát · Tháp rơi tự do' : 'Đang phát nhạc demo') : (hasMusicFile ? 'Bật Tháp rơi tự do' : 'Bật nhạc demo');
+    }
+    function stopMusic() {
+      musicOn = false;
+      backgroundTrack.pause();
+      clearInterval(musicTimer);
+      for (const voice of voices) { try { voice.stop(); } catch (_) {} }
+      voices.clear();
+      updateMusicLabel();
+    }
+    $('sound-button').addEventListener('click', async () => {
+      if (musicOn) { stopMusic(); return; }
+      if (hasMusicFile) {
+        try {
+          musicOn = true;
+          if (backgroundTrack.ended) seekToChorus();
+          await backgroundTrack.play();
+          updateMusicLabel();
+        } catch (_) { stopMusic(); toast('Chưa phát được bản nhạc. Em thử bật lại nhé.'); }
+        return;
+      }
+      const AudioAPI = window.AudioContext || window.webkitAudioContext;
+      if (!AudioAPI) { toast('Trình duyệt này chưa hỗ trợ nhạc. Mình đọc thư nhé!'); return; }
+      try {
+        if (!audioContext) audioContext = new AudioAPI();
+        await audioContext.resume();
+        musicOn = true;
+        updateMusicLabel();
+        const tick = () => {
+          playNote(melody[musicStep % melody.length]);
+          if (musicStep % 4 === 0) playNote([48,53,55,48,52,53,48,55][Math.floor(musicStep / 4) % 8], 2.4, .028);
+          musicStep++;
+        };
+        tick();
+        musicTimer = setInterval(tick, 560);
+      } catch (_) { stopMusic(); toast('Chưa bật được nhạc. Em vẫn mở thư được nhé.'); }
+    });
+    updateMusicLabel();
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { stopMusic(); stopConfetti(); cancelAnimationFrame(rainFrame); rainFrame = 0; }
+      else if (currentScreen === 'success' && !rainPaused) { rainPrevious = 0; if (!reduceMotion.matches) rainFrame = requestAnimationFrame(rainTick); }
+    });
+    reduceMotion.addEventListener?.('change', () => {
+      if (reduceMotion.matches) stopConfetti();
+      updateRainLabel();
+      if (currentScreen === 'success') startLoveRain();
+    });
+  </script>
+</body>
+</html>
