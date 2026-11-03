@@ -282,7 +282,7 @@
     }
 
     // Chọn vị trí trong màn hình, tránh nút Đồng ý, nhạc và vị trí con trỏ.
-    // Có tìm kiếm theo lưới dự phòng để không phụ thuộc may rủi trên màn hình nhỏ.
+    // Lấy ngẫu nhiên vị trí an toàn, có thêm lưới dự phòng cho màn hình nhỏ.
     function findEscapePosition(width, height, pointerX, pointerY) {
       const viewport = window.visualViewport;
       const viewportWidth = viewport ? viewport.width : window.innerWidth;
@@ -302,19 +302,21 @@
       const candidates = [];
       for (let i = 0; i < 65; i++) candidates.push({ x:minX + Math.random() * (maxX - minX), y:minY + Math.random() * (maxY - minY) });
       for (let ix = 0; ix < 7; ix++) for (let iy = 0; iy < 9; iy++) candidates.push({ x:minX + (maxX - minX) * ix / 6, y:minY + (maxY - minY) * iy / 8 });
-      let best = candidates[0];
-      let bestScore = -Infinity;
-      for (const candidate of candidates) {
-        const rect = { ...candidate, width, height };
-        const centerX = candidate.x + width / 2;
-        const centerY = candidate.y + height / 2;
-        const pointerDistance = Math.hypot(centerX - pointerX, centerY - pointerY);
+      const safe = candidates.filter((candidate) =>
+        !blocked.some((block) => intersects({ ...candidate, width, height }, block, 18))
+      );
+      const preferred = safe.filter((candidate) => {
+        const pointerDistance = Math.hypot(
+          candidate.x + width / 2 - pointerX,
+          candidate.y + height / 2 - pointerY
+        );
         const moveDistance = Math.hypot(candidate.x - old.left, candidate.y - old.top);
-        const collision = blocked.some((block) => intersects(rect, block, 18));
-        const score = pointerDistance + Math.min(moveDistance, 180) * .4 - (collision ? 100000 : 0);
-        if (score > bestScore) { best = candidate; bestScore = score; }
-      }
-      return best;
+        return pointerDistance > Math.max(width, height) + 24 && moveDistance > 90;
+      });
+      // Chọn đều trong các vị trí hợp lệ, tránh luôn nhảy về góc xa nhất.
+      const choices = preferred.length ? preferred : safe;
+      if (!choices.length) return { x:old.left, y:old.top };
+      return choices[Math.floor(Math.random() * choices.length)];
     }
 
     function escapeNo(event) {
