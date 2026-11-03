@@ -529,20 +529,22 @@
       musicButton.setAttribute('aria-label', playing ? 'Tạm dừng nhạc nền' : 'Bật nhạc nền');
       musicLabel.textContent = playing ? 'Ⅱ Tạm dừng nhạc' : '♫ Bật nhạc';
     }
-    async function playMusic() {
+    async function playMusic(quiet = false) {
       try {
         await backgroundTrack.play();
       } catch (err) {
-        if (backgroundTrack.error || backgroundTrack.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
-          showToast('Chưa có nhạc trên website. Cần thêm tệp nhac.mp3 vào GitHub.');
-        } else {
-          showToast('Nhấn nút nhạc để bật âm thanh nhé ♫');
+        if (!quiet) {
+          if (backgroundTrack.error || backgroundTrack.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+            toast('Chưa có nhạc trên website. Cần bổ sung tệp nhac.mp3.');
+          } else {
+            toast('Chạm lại vào nút nhạc để bật âm thanh nhé ♫');
+          }
         }
       }
       updateMusicLabel();
     }
     musicButton.addEventListener('click', () => {
-      if (backgroundTrack.paused) playMusic();
+      if (backgroundTrack.paused) playMusic(false);
       else { backgroundTrack.pause(); updateMusicLabel(); }
     });
     backgroundTrack.addEventListener('play', updateMusicLabel);
@@ -551,7 +553,7 @@
     updateMusicLabel();
     // Trình duyệt điện thoại thường chặn phát tự động có âm thanh.
     // Thử phát khi mở trang; nếu bị chặn, người xem chỉ cần chạm nút nhạc.
-    window.addEventListener('load', () => { playMusic(); }, { once:true });
+    window.addEventListener('load', () => { playMusic(true); }, { once:true });
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) { stopConfetti(); cancelAnimationFrame(rainFrame); rainFrame = 0; }
       else if (currentScreen === 'success' && !rainPaused) { rainPrevious = 0; if (!reduceMotion.matches) rainFrame = requestAnimationFrame(rainTick); }
