@@ -71,7 +71,7 @@
     .primary svg { width:15px; height:15px; }
     .question-screen { padding:33px 0 12px; }
     .flower-art { width:97px; height:101px; margin:0 0 16px; }
-    .question-screen h2 { font-size:34px; max-width:320px; line-height:1.25; margin:15px 0 16px; }
+    .question-screen h2 { font-size:clamp(21px,2.4vw,27px); max-width:540px; line-height:1.5; margin:12px auto 16px; text-wrap:pretty; }
     .answer-zone { width:100%; position:relative; min-height:94px; margin-top:26px; display:flex; align-items:flex-start; justify-content:center; gap:12px; }
     .yes { min-width:151px; }
     .no { min-width:107px; min-height:47px; background:#fffdf9; border:1px solid #decac6; border-radius:7px; padding:14px 18px; font-size:13px; color:#a88b8e; white-space:nowrap; touch-action:none; transition:box-shadow .15s; }
@@ -112,7 +112,7 @@
       main { grid-template-columns:1fr; padding:45px 0 34px; gap:34px; } .hero { text-align:center; } .eyebrow { justify-content:center; font-size:9px; letter-spacing:.16em; } .eyebrow::before { width:22px; }
       h1 { font-size:49px; line-height:1.12; margin:18px 0; } .intro { max-width:300px; margin:auto; font-size:12px; line-height:1.85; } .dedication { display:none; }
       .experience { width:min(440px,100%); margin:auto; } .card { min-height:515px; padding:26px 23px 23px; } .stamp { width:65px; height:65px; font-size:7px; right:-10px; top:-16px; }
-      .envelope-button { margin-top:40px; margin-bottom:25px; } .card-header { font-size:8px; } .letter-copy { font-size:13px; } .letter-screen { padding:26px 5px 9px; } .question-screen h2 { font-size:32px; }
+      .envelope-button { margin-top:40px; margin-bottom:25px; } .card-header { font-size:8px; } .letter-copy { font-size:13px; } .letter-screen { padding:26px 5px 9px; } .question-screen h2 { font-size:21px; max-width:100%; line-height:1.52; }
       .page-footer { justify-content:center; font-size:9px; } .footer-right { display:none; } .petal-b { right:-13px; }
     }
     @media (max-width:360px) { .page { padding:20px 17px; } h1 { font-size:43px; } .card { padding:24px 18px; } .envelope-button { width:226px; height:158px; } .seal { left:91px; top:62px; } .yes { min-width:136px; } .no { min-width:96px; padding:14px; } .answer-zone { gap:9px; } }
@@ -184,7 +184,7 @@
             </svg>
             <div class="little-label">Vậy nên, anh muốn hỏi…</div>
             <h2 id="question-title" tabindex="-1">Em làm người yêu<br>anh nhé?</h2>
-            <p class="small-copy">Cho anh một cơ hội được ở bên em.</p>
+            <p class="small-copy">Manh thật lòng muốn được ở cạnh Gbao, lâu dài và duy nhất.</p>
             <div class="answer-zone" id="answer-zone">
               <button class="primary yes" id="yes-button" type="button">Em đồng ý <svg aria-hidden="true"><use href="#heart"/></svg></button>
               <button class="no" id="no-button" type="button" aria-describedby="tease">Không</button>
@@ -217,7 +217,7 @@
     const CONFIG = {
       recipient: '', // Ví dụ: 'Linh'
       sender: '',    // Ví dụ: 'Bảo'
-      question: 'Em làm người yêu anh nhé?',
+      question: 'Liệu anh có thể trở thành người che nắng che mưa, dù là giữa trưa hay giông bão, để em có thể yên lòng mà ở cạnh anh được không? Anh muốn tất cả của em, muốn là người duy nhất biết mọi điều về em, muốn là người đầu tiên em nhớ tới mỗi khi gặp chuyện. Manh cho phép Gbao được ở cạnh em nhé?',
       shareText: 'Em đồng ý làm người yêu anh rồi nhé! ♡',
       loveMessages: [
         'Anh yêu em',
