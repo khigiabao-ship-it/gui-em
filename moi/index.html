@@ -63,7 +63,7 @@
     .letter-screen { padding:28px 9px 16px; }
     .letter-heart { width:36px; height:36px; color:#b57583; margin:10px 0 17px; }
     .greeting { font:italic 30px var(--serif); color:var(--rose); margin:0 0 20px; }
-    .letter-copy { font-size:14px; line-height:1.95; color:#816e70; margin:0 0 13px; max-width:320px; }
+    .letter-copy { font-size:14px; line-height:1.8; color:#816e70; margin:0 0 15px; max-width:370px; text-wrap:pretty; }
     .letter-copy strong { font-weight:400; color:var(--rose); }
     .signature { margin:11px 0 24px; font:italic 20px var(--serif); color:#976e78; }
     .primary { display:inline-flex; align-items:center; justify-content:center; gap:11px; border:1px solid var(--rose); border-radius:7px; background:var(--rose); color:#fff9f7; padding:14px 23px; font-size:13px; min-height:47px; box-shadow:0 6px 14px #a8435914; transition:background .2s,transform .2s; }
@@ -82,7 +82,7 @@
     .yes-heart::before { content:""; position:absolute; inset:0; border-radius:50%; background:#f7e7e7; animation:pulse 3s ease-in-out infinite; }
     .yes-heart svg { position:absolute; width:62px; height:62px; inset:27px; color:var(--rose); }
     .success-screen { padding:22px 0 16px; }
-    .success-screen h2 { font-size:37px; max-width:320px; margin:15px 0 17px; }
+    .success-screen h2 { font-size:clamp(24px,3vw,31px); max-width:390px; line-height:1.4; margin:15px 0 17px; text-wrap:pretty; }
     .success-copy { font-size:13px; line-height:1.9; color:#987e81; max-width:280px; margin:0 0 24px; }
     .success-tag { margin-top:17px; border:1px solid #e9d5d3; border-radius:30px; color:#9d6575; padding:8px 14px; font-size:10px; letter-spacing:.05em; background:#fbf3ee; }
     .success-screen .text-button { margin-top:13px; }
@@ -168,9 +168,8 @@
           <section class="screen letter-screen" id="screen-letter" aria-labelledby="letter-title" hidden>
             <svg class="letter-heart" aria-hidden="true"><use href="#heart-line"/></svg>
             <h2 class="greeting" id="letter-title" tabindex="-1">Chào em,</h2>
-            <p class="letter-copy" id="letter-paragraph-one">Anh đã nghĩ mãi về cách nói ra điều này.<br>Cuối cùng, anh chọn một lá thư nhỏ.</p>
-            <p class="letter-copy" id="letter-paragraph-two">Vì có một điều anh biết rất rõ:<br><strong>anh thích em, nhiều hơn một chút rồi.</strong></p>
-            <p class="letter-copy" id="letter-paragraph-three">Anh muốn được cùng em đi ăn, đi dạo,<br>và nghe em kể cả những chuyện nhỏ mỗi ngày.</p>
+            <p class="letter-copy" id="letter-paragraph-one">Manh biết không, anh nghĩ những lời nói thì chưa đủ chân thành để diễn tả hết cảm xúc của anh dành cho em. Em nhớ không, anh đã hứa sẽ để em trở thành người con gái hạnh phúc nhất đêm nay, vậy nên anh cũng phải làm gì đó cho tương xứng chứ nhỉ?</p>
+            <p class="letter-copy" id="letter-paragraph-three">Anh muốn nắm tay em, không chỉ là đi ăn, đi chơi, đi cf mà còn là đi hết quãng đời này cơ, nói ra thì thực sự rất dài nên hãy để anh từ từ làm cho em hiểu nhé?</p>
             <p class="signature" id="signature">Từ một người rất thích em ♡</p>
             <button class="primary" id="to-question" type="button">Anh có một câu hỏi… <span aria-hidden="true">→</span></button>
           </section>
@@ -184,7 +183,7 @@
             </svg>
             <div class="little-label">Vậy nên, anh muốn hỏi…</div>
             <h2 id="question-title" tabindex="-1">Em làm người yêu<br>anh nhé?</h2>
-            <p class="small-copy">Manh thật lòng muốn được ở cạnh Gbao, lâu dài và duy nhất.</p>
+            
             <div class="answer-zone" id="answer-zone">
               <button class="primary yes" id="yes-button" type="button">Em đồng ý <svg aria-hidden="true"><use href="#heart"/></svg></button>
               <button class="no" id="no-button" type="button" aria-describedby="tease">Không</button>
@@ -194,7 +193,7 @@
           <section class="screen success-screen" id="screen-success" aria-labelledby="success-title" hidden>
             <div class="yes-heart"><svg aria-hidden="true"><use href="#heart"/></svg></div>
             <div class="little-label">Một khởi đầu thật đẹp</div>
-            <h2 id="success-title" tabindex="-1">Vậy là…<br>chúng mình nhé!</h2>
+            <h2 id="success-title" tabindex="-1">Thế là chúng mình chính thức có danh phận rồi nhé? Không được trêu anh nữa đâu</h2>
             <p class="success-copy">Cảm ơn em đã đồng ý.<br>Những ngày bình thường sắp tới,<br>anh muốn được cùng em làm chúng đặc biệt hơn.</p>
             <button class="primary" id="share-button" type="button">Gửi anh lời đồng ý <svg aria-hidden="true"><use href="#heart-line"/></svg></button>
             <div class="success-tag" id="success-date"></div>
