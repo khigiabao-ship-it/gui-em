@@ -468,7 +468,7 @@
           speed:26 + Math.random() * 31,
           sway:4 + Math.random() * 8,
           phase:Math.random() * Math.PI * 2,
-          opacity:.42 + Math.random() * .25,
+          opacity:.8 + Math.random() * .2,
         };
       });
     }
@@ -477,8 +477,6 @@
       const delta = rainPrevious ? Math.min((time - rainPrevious) / 1000, .05) : 0;
       rainPrevious = time;
       rainContext.clearRect(0, 0, rainWidth, rainHeight);
-      // Giảm độ đậm khi chữ đi ngang lời nhắn chính để vẫn đọc được nội dung.
-      const reading = $('screen-success').getBoundingClientRect();
       for (const piece of rainPieces) {
         if (animate) piece.y += piece.speed * delta;
         if (piece.y > rainHeight + 35) {
@@ -486,9 +484,8 @@
           piece.x = 10 + Math.random() * Math.max(0, rainWidth - piece.textWidth - 20);
         }
         const x = Math.max(6, Math.min(rainWidth - piece.textWidth - 6, piece.x + Math.sin(time / 2500 + piece.phase) * piece.sway));
-        const behindReading = piece.y > reading.top && piece.y < reading.bottom && x + piece.textWidth > reading.left && x < reading.right;
-        rainContext.fillStyle = '#e5a8bd';
-        rainContext.globalAlpha = piece.opacity * (behindReading ? .25 : 1);
+        rainContext.fillStyle = '#cf7899';
+        rainContext.globalAlpha = piece.opacity;
         rainContext.font = 'italic ' + piece.size + 'px Georgia, serif';
         rainContext.fillText(piece.text, x, piece.y);
       }
