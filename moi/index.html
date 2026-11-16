@@ -216,7 +216,7 @@
     const CONFIG = {
       recipient: '', // Ví dụ: 'Linh'
       sender: '',    // Ví dụ: 'Bảo'
-      question: 'Liệu anh có thể trở thành người che nắng che mưa, dù là giữa trưa hay giông bão, để em có thể yên lòng mà ở cạnh anh được không? Anh muốn tất cả của em, muốn là người duy nhất biết mọi điều về em, muốn là người đầu tiên em nhớ tới mỗi khi gặp chuyện. Manh cho phép Gbao được ở cạnh em nhé?',
+      question: 'Liệu anh có thể trở thành người che nắng che mưa, dù là giữa trưa hay giông bão, để em có thể yên lòng mà ở cạnh anh được không? Anh muốn tất cả của em, muốn là người duy nhất biết mọi điều về em, muốn là người đầu tiên em nhớ tới mỗi khi gặp chuyện. Manh cho phép Gbao được CÓ CƠ HỘI để tỏ tình em nhé?',
       shareText: 'Em đồng ý làm người yêu anh rồi nhé! ♡',
       loveMessages: [
         'Anh yêu em',
@@ -244,7 +244,20 @@
       $('dedication').textContent = 'Dành riêng cho ' + CONFIG.recipient + '.';
     }
     if (CONFIG.sender) $('signature').textContent = 'Thương em, ' + CONFIG.sender + ' ♡';
-    if (CONFIG.question !== 'Em làm người yêu anh nhé?') $('question-title').textContent = CONFIG.question;
+    const questionTitle = $('question-title');
+    const emphasis = 'CÓ CƠ HỘI';
+    const emphasisStart = CONFIG.question.indexOf(emphasis);
+    questionTitle.textContent = CONFIG.question;
+    if (emphasisStart !== -1) {
+      const accent = document.createElement('strong');
+      accent.style.fontFamily = 'Arial, Helvetica, sans-serif';
+      accent.textContent = emphasis;
+      questionTitle.replaceChildren(
+        CONFIG.question.slice(0, emphasisStart),
+        accent,
+        CONFIG.question.slice(emphasisStart + emphasis.length)
+      );
+    }
 
     function resetNoButton() {
       $('no-slot').append(noButton);
