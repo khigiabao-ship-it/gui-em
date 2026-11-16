@@ -7,6 +7,7 @@
   <meta name="description" content="Một lá thư nhỏ, dành cho một người rất đặc biệt.">
   <title>Gửi em — Một điều muốn nói</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23f8eeea'/%3E%3Cpath d='M32 49 12 29C0 14 22 4 32 21 42 4 64 14 52 29Z' fill='%23aa4b60'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap">
   <style>
     :root { --paper:#fffdf9; --rose:#a84359; --rose-dark:#873448; --ink:#49383b; --muted:#8b7779; --line:#e7d7d2; --serif:Georgia,'Times New Roman',serif; }
     * { box-sizing:border-box; }
@@ -250,7 +251,9 @@
     questionTitle.textContent = CONFIG.question;
     if (emphasisStart !== -1) {
       const accent = document.createElement('strong');
-      accent.style.fontFamily = 'Arial, Helvetica, sans-serif';
+      accent.style.fontFamily = '"Great Vibes", "Segoe Script", "Brush Script MT", cursive';
+      accent.style.fontWeight = '400';
+      accent.style.fontSize = '1.18em';
       accent.textContent = emphasis;
       questionTitle.replaceChildren(
         CONFIG.question.slice(0, emphasisStart),
