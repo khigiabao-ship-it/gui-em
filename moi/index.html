@@ -185,6 +185,10 @@
             <div class="little-label">Vậy nên, anh muốn hỏi…</div>
             <h2 id="question-title" tabindex="-1">Em làm người yêu<br>anh nhé?</h2>
             
+            <button class="primary" id="to-confession" type="button">Em đồng ý</button>
+          </section>
+          <section class="screen question-screen" id="screen-confession" aria-labelledby="confession-title" hidden>
+            <h2 id="confession-title" tabindex="-1">Vậy sau đây sẽ là lời tỏ tình của anh</h2>
             <div class="answer-zone" id="answer-zone">
               <div class="no-slot" id="no-slot"><button class="no" id="no-button" type="button" aria-describedby="tease">Không</button></div>
               <button class="primary yes" id="yes-button" type="button">Em đồng ý <svg aria-hidden="true"><use href="#heart"/></svg></button>
@@ -200,7 +204,7 @@
             <div class="success-tag" id="success-date"></div>
             <div class="subtle-actions"><button class="text-button" id="replay-button" type="button">Đọc lại lá thư <span aria-hidden="true">↺</span></button><button class="text-button" id="rain-toggle" type="button" aria-pressed="false">Tạm dừng mưa chữ <span aria-hidden="true">Ⅱ</span></button></div>
           </section>
-          <div class="card-footer" id="progress" aria-label="Trang 1 trên 4"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="card-footer" id="progress" aria-label="Trang 1 trên 5"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
         </div>
       </section>
     </main>
@@ -228,7 +232,7 @@
     };
 
     const $ = (id) => document.getElementById(id);
-    const screenNames = ['envelope', 'letter', 'question', 'success'];
+    const screenNames = ['envelope', 'letter', 'question', 'confession', 'success'];
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let currentScreen = 'envelope';
     let escapeCount = 0;
@@ -276,14 +280,14 @@
 
     function showScreen(name) {
       if (!screenNames.includes(name)) return;
-      if (name !== 'question') resetNoButton();
+      if (name !== 'confession') resetNoButton();
       if (name !== 'success') stopLoveRain();
       currentScreen = name;
       if (name !== 'success') stopParticleHeart();
       screenNames.forEach((screen) => { $('screen-' + screen).hidden = screen !== name; });
       const step = screenNames.indexOf(name);
       [...$('progress').children].forEach((dot, i) => dot.classList.toggle('active', i === step));
-      $('progress').setAttribute('aria-label', 'Trang ' + (step + 1) + ' trên 4');
+      $('progress').setAttribute('aria-label', 'Trang ' + (step + 1) + ' trên ' + screenNames.length);
       // Đặt tiêu điểm vào nội dung mới để dùng được bằng bàn phím và trình đọc màn hình.
       const heading = $('screen-' + name).querySelector('h2');
       heading.focus({ preventScroll: true });
@@ -337,7 +341,7 @@
     }
 
     function escapeNo(event) {
-      if (currentScreen !== 'question') return;
+      if (currentScreen !== 'confession') return;
       if (event.cancelable) event.preventDefault();
       event.stopPropagation();
       const now = performance.now();
@@ -370,7 +374,7 @@
     noButton.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') escapeNo(event); });
 
     function keepNoInView() {
-      if (!noButton.classList.contains('is-roaming') || currentScreen !== 'question') return;
+      if (!noButton.classList.contains('is-roaming') || currentScreen !== 'confession') return;
       const r = noButton.getBoundingClientRect();
       const position = findEscapePosition(r.width, r.height, r.left, r.top);
       noButton.style.left = position.x + 'px';
@@ -379,6 +383,7 @@
     window.addEventListener('resize', keepNoInView);
     if (window.visualViewport) window.visualViewport.addEventListener('resize', keepNoInView);
 
+    $('to-confession').addEventListener('click', () => showScreen('confession'));
     $('yes-button').addEventListener('click', () => {
       // Bỏ qua cú bấm đúp còn sót lại ngay sau khi nút Không né đi.
       if (performance.now() - lastNoInteraction < 650) return;
