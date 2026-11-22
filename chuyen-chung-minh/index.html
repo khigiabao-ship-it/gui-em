@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b0d13">
+  <meta name="description" content="Từ những ngày đen trắng, một bình luận trên Threads, đến một câu chuyện có chúng mình. Một thước phim nhỏ dành cho em.">
+  <meta property="og:title" content="Kể từ khi có em — Chuyện chúng mình">
+  <meta property="og:description" content="Có một người, làm những ngày bình thường bắt đầu có màu.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./assets/night-garden.webp">
+  <title>Kể từ khi có em — Chuyện chúng mình</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="./assets/night-garden.webp" as="image" fetchpriority="high">
+  <link rel="preload" href="./assets/story-serif.woff" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./story.js" defer></script>
+</head>
+<body data-chapter="0">
+  <a class="skip-link" href="#story-title-0">Đến câu chuyện</a>
+  <div class="world" aria-hidden="true">
+    <img class="landscape" src="./assets/night-garden.webp" alt="" fetchpriority="high">
+    <div class="world-shade"></div>
+    <div class="world-light"></div>
+    <div class="grain"></div>
+    <div id="particles" class="particles"></div>
+  </div>
+
+  <header class="site-header">
+    <a class="wordmark" href="#truoc-khi" aria-label="Chuyện chúng mình, về cảnh đầu">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 30C14 26 5 21 7 14c2-6 10-6 13 0 3-6 11-6 13 0 2 7-7 12-13 16Z" stroke="currentColor" stroke-width="1.4"/><path d="M14 20h12M20 14v12" stroke="currentColor" stroke-width="1.1"/></svg>
+      <span>chuyện chúng mình<span class="wordmark-sub">MỘT THƯỚC PHIM DÀNH CHO EM</span></span>
+    </a>
+    <div class="header-actions">
+      <button id="autoplay" class="text-button auto-button" aria-label="Xem như phim" type="button" aria-pressed="false">
+        <svg class="play-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6Z" fill="currentColor"/></svg>
+        <svg class="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4h3v12H6zm5 0h3v12h-3z" fill="currentColor"/></svg>
+        <span>Xem như phim</span>
+      </button>
+      <button id="chapters-open" class="icon-button" type="button" aria-label="Mở các chương" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="story" class="story-stage" aria-label="Câu chuyện qua bảy hoạt cảnh" aria-roledescription="trình chiếu">
+    <section class="slide is-active" id="truoc-khi" data-duration="14000" aria-labelledby="story-title-0" aria-roledescription="cảnh">
+      <div class="slide-copy">
+        <p class="eyebrow"><span class="tiny-line"></span>KHI CÂU CHUYỆN CHƯA CÓ EM</p>
+        <h1 id="story-title-0" tabindex="-1">Thế giới anh,<br> chỉ một <em>màu đen.</em></h1>
+        <p class="story-text">Đi làm. Về nhà. Ăn uống. Ngủ nghỉ.<br> Ngày này qua ngày khác, cuộc sống của anh cứ lặp lại như thế.</p>
+        <button class="primary-button" type="button" data-next>Bắt đầu câu chuyện</button>
+        <p class="handwritten intro-note">Rồi một người xuất hiện…</p>
+      </div>
+      <div class="stage-art routine-art" aria-hidden="true">
+        <div class="clock-ring"><span></span></div>
+        <div class="routine-path"></div>
+        <div class="routine-chip work-chip"><svg viewBox="0 0 32 32"><path d="M5 12h22v15H5zM11 12V7h10v5M5 18h22M14 18v4h4v-4"/></svg><span>Đi làm</span></div>
+        <div class="routine-chip home-chip"><svg viewBox="0 0 32 32"><path d="m4 15 12-10 12 10M8 13v14h16V13M13 27V17h6v10"/></svg><span>Về nhà</span></div>
+        <div class="routine-chip eat-chip"><svg viewBox="0 0 32 32"><path d="M5 17h22a11 11 0 0 1-22 0ZM3 17h26M12 5v6M18 3v7M24 6v5"/></svg><span>Ăn uống</span></div>
+        <div class="routine-chip sleep-chip"><svg viewBox="0 0 32 32"><path d="M25 21A12 12 0 0 1 11 5a12 12 0 1 0 14 16Z"/></svg><span>Ngủ nghỉ</span></div>
+        <img class="lone-character" src="./assets/him.webp" alt="" decoding="async">
+        <span class="routine-caption">rồi lại một ngày như thế.</span>
+      </div>
+    </section>
+
+    <section class="slide" id="threads" data-duration="15000" aria-labelledby="story-title-1" aria-roledescription="cảnh" inert aria-hidden="true">
+      <div class="slide-copy">
+        <p class="eyebrow"><span class="tiny-line"></span>MỘT CHÚT TÌNH CỜ</p>
+        <h2 id="story-title-1" tabindex="-1">Cho đến một ngày,<br> anh <em>thấy em.</em></h2>
+        <p class="story-text">Bắt đầu từ một bài viết trên Threads.<br> Anh bình luận ở một bài, rồi hai bài, rồi ba bài. Câu chuyện của mình bắt đầu nhỏ xíu như thế.</p>
+        <p class="handwritten">Một bình luận. Một khởi đầu.</p>
+      </div>
+      <div class="stage-art threads-art" aria-hidden="true">
+        <div class="thread-orbit orbit-one"></div><div class="thread-orbit orbit-two"></div>
+        <article class="post-card">
+          <div class="post-top"><div class="profile-dot">e</div><span>một người đặc biệt<small>một bài viết trên Threads</small></span><span class="thread-symbol">@</span></div>
+          <div class="post-lines"><i></i><i></i><i></i></div>
+          <div class="post-actions"><span>♡</span><svg viewBox="0 0 20 20"><path d="M16 9a6 6 0 0 1-9 5l-4 1 1-4a6 6 0 1 1 12-2Z"/></svg><span>↻</span></div>
+          <div class="post-divider"></div>
+          <div class="comment comment-one"><span class="comment-avatar">a</span><div><b>Bình luận đầu tiên</b><i></i></div><span>♡</span></div>
+          <div class="comment comment-two"><span class="comment-avatar">a</span><div><b>Rồi bài thứ hai</b><i></i></div><span class="pink">♡</span></div>
+          <div class="comment comment-three"><span class="comment-avatar">a</span><div><b>Và bài thứ ba…</b><i></i></div><span class="pink">♡</span></div>
+        </article>
+        <span class="floating-word">tình cờ thôi, mà nhớ mãi.</span>
+        <div class="color-spark spark-one"></div><div class="color-spark spark-two"></div>
+      </div>
+    </section>
+
+    <section class="slide" id="tin-nhan" data-duration="14000" aria-labelledby="story-title-2" aria-roledescription="cảnh" inert aria-hidden="true">
+      <div class="slide-copy">
+        <p class="eyebrow"><span class="tiny-line"></span>KHOẢNG CÁCH NGẮN ĐI MỘT CHÚT</p>
+        <h2 id="story-title-2" tabindex="-1">Rồi anh nhắn em<br> những <em>dòng đầu tiên.</em></h2>
+        <p class="story-text">Từ những bình luận dưới bài viết,<br> anh bắt đầu nhắn tin cho em. Hai người xa lạ dần bước vào thế giới của nhau.</p>
+        <p class="handwritten">Chúng mình, từ một ô tin nhắn.</p>
+      </div>
+      <div class="stage-art messages-art" aria-hidden="true">
+        <div class="message-halo"></div>
+        <div class="phone">
+          <div class="phone-speaker"></div>
+          <div class="phone-header"><div class="profile-dot">e</div><div>em<small>cuộc trò chuyện của chúng mình</small></div><span>♡</span></div>
+          <p class="chat-date">NHỮNG DÒNG TIN ĐẦU TIÊN</p>
+          <div class="chat-bubble bubble-out bubble-one"><i></i><i></i><span class="bubble-heart">♡</span></div>
+          <span class="sent-note">Đã gửi</span>
+          <div class="chat-bubble bubble-in bubble-two"><i></i><i></i></div>
+          <div class="chat-bubble bubble-out bubble-three"><i></i><i></i></div>
+          <div class="chat-bubble bubble-in bubble-four"><i></i><i></i><i></i></div>
+          <div class="phone-input"><span>Nhắn cho em…</span><div class="typing"><i></i><i></i><i></i></div></div>
+        </div>
+        <span class="little-message message-float-one">một câu chuyện mới</span>
+        <span class="little-message message-float-two">bắt đầu từ đây ♡</span>
+      </div>
+    </section>
+
+    <section class="slide" id="gap-nhau" data-duration="14000" aria-labelledby="story-title-3" aria-roledescription="cảnh" inert aria-hidden="true">
+      <div class="slide-copy">
+        <p class="eyebrow"><span class="tiny-line"></span>TỪ MÀN HÌNH, ĐẾN NGOÀI ĐỜI</p>
+        <h2 id="story-title-3" tabindex="-1">Và chúng mình<br> <em>đã gặp nhau.</em></h2>
+        <p class="story-text">Một buổi gặp. Rồi thêm một buổi nữa.<br> Người ở phía bên kia màn hình,<br> giờ đã ở ngay trước mặt anh.</p>
+        <p class="handwritten">Em ở đây, thật gần.</p>
+      </div>
+      <div class="stage-art meeting-art" aria-hidden="true">
+        <div class="meeting-glow"></div>
+        <div class="ground-line"></div>
+        <img class="meeting-boy" src="./assets/him.webp" alt="" decoding="async">
+        <img class="meeting-girl" src="./assets/her.webp" alt="" decoding="async">
+        <div class="meeting-heart">♡</div>
+        <span class="meeting-label label-first">Lần gặp đầu tiên</span><span class="meeting-label label-second">Rồi thêm một lần nữa</span>
+      </div>
+    </section>
+
+    <section class="slide" id="gan-hon" data-duration="14000" aria-labelledby="story-title-4" aria-roledescription="cảnh" inert aria-hidden="true">
+      <div class="slide-copy">
+        <p class="eyebrow"><span class="tiny-line"></span>KHI KHOẢNG CÁCH DẦN BIẾN MẤT</p>
+        <h2 id="story-title-4" tabindex="-1">Một cái ôm.<br> Một <em>nụ hôn.</em></h2>
+        <p class="story-text">Từ những buổi gặp đầu tiên,<br> đến những cái ôm và nụ hôn.<br> Chúng mình cứ thế gần nhau hơn.</p>
+        <p class="handwritten">Có những điều, chẳng cần nói thành lời.</p>
+      </div>
+      <div class="stage-art embrace-art" aria-hidden="true">
+        <div class="embrace-orbit orbit-a"></div><div class="embrace-orbit orbit-b"></div><div class="embrace-glow"></div>
+        <img class="together-character" src="./assets/together.webp" alt="" decoding="async">
+        <span class="embrace-heart heart-one">♡</span><span class="embrace-heart heart-two">♡</span><span class="embrace-heart heart-three">♡</span>
+      </div>
+    </section>
+
+    <section class="slide" id="co-mau" data-duration="16000" aria-labelledby="story-title-5" aria-roledescription="cảnh" inert aria-hidden="true">
+      <div class="slide-copy">
+        <p class="eyebrow"><span class="tiny-line"></span>NHỮNG ĐIỀU NHỎ BÉ CỦA HAI ĐỨA</p>
+        <h2 id="story-title-5" tabindex="-1">Những ngày thường,<br> bắt đầu <em>có màu.</em></h2>
+        <p class="story-text">Chúng mình dần thân thiết hơn,<br> có thêm những kỷ niệm cùng nhau.<br> Thế giới từng đen kịt của anh cũng dần đổi khác.</p>
+        <p class="handwritten">Từng chút một. Kể từ khi có em.</p>
+      </div>
+      <div class="stage-art memories-art" aria-hidden="true">
+        <div class="memory-line"></div>
+        <figure class="memory-card memory-one"><div class="memory-picture first-memory"><span class="memory-at">@</span><span class="drawn-comment"></span><span class="memory-miniheart">♡</span></div><figcaption>Từ một bình luận</figcaption><span class="memory-tape"></span></figure>
+        <figure class="memory-card memory-two"><div class="memory-picture second-memory"><img src="./assets/him.webp" alt="" decoding="async"><img src="./assets/her.webp" alt="" decoding="async"></div><figcaption>Đến những buổi gặp</figcaption><span class="memory-tape"></span></figure>
+        <figure class="memory-card memory-three"><div class="memory-picture third-memory"><img src="./assets/together.webp" alt="" decoding="async"></div><figcaption>Rồi bao kỷ niệm</figcaption><span class="memory-tape"></span></figure>
+        <span class="memories-caption">gom lại thành chúng mình.</span>
+      </div>
+    </section>
+
+    <section class="slide" id="chung-minh" data-duration="16000" aria-labelledby="story-title-6" aria-roledescription="cảnh" inert aria-hidden="true">
+      <div class="slide-copy">
+        <p class="eyebrow"><span class="tiny-line"></span>VÀ CÂU CHUYỆN VẪN ĐANG ĐƯỢC VIẾT</p>
+        <h2 id="story-title-6" tabindex="-1">Hóa ra,<br> màu sắc ấy <em>là em.</em></h2>
+        <p class="story-text">Từ một thế giới chỉ có những ngày lặp lại,<br> đến một câu chuyện có em.<br> Cảm ơn em, vì đã bước vào cuộc sống của anh.</p>
+        <p class="handwritten final-note">Những trang tiếp theo, mình cùng viết nhé.</p>
+        <button id="replay" class="primary-button replay-button" type="button">Kể lại từ đầu</button>
+      </div>
+      <div class="stage-art final-art" aria-hidden="true">
+        <div class="final-sun"></div><div class="final-ring"></div>
+        <img class="final-boy" src="./assets/him.webp" alt="" decoding="async"><img class="final-girl" src="./assets/her.webp" alt="" decoding="async">
+        <div class="final-heart">♡</div><span class="final-caption">kể từ khi có em.</span>
+      </div>
+    </section>
+    <div class="scene-wipe" aria-hidden="true"></div>
+  </main>
+
+  <footer class="story-footer">
+    <div class="footer-top"><p id="scene-caption">Một thế giới chưa có em.</p><span id="scene-position" class="scene-position">1 / 7</span></div>
+    <nav class="chapter-nav" aria-label="Chọn cảnh">
+      <button class="chapter-button is-current" type="button" data-goto="0" aria-current="step"><span class="chapter-track"><i></i></span><span>Trước khi</span></button>
+      <button class="chapter-button" type="button" data-goto="1"><span class="chapter-track"><i></i></span><span>Threads</span></button>
+      <button class="chapter-button" type="button" data-goto="2"><span class="chapter-track"><i></i></span><span>Tin nhắn</span></button>
+      <button class="chapter-button" type="button" data-goto="3"><span class="chapter-track"><i></i></span><span>Gặp nhau</span></button>
+      <button class="chapter-button" type="button" data-goto="4"><span class="chapter-track"><i></i></span><span>Gần hơn</span></button>
+      <button class="chapter-button" type="button" data-goto="5"><span class="chapter-track"><i></i></span><span>Có màu</span></button>
+      <button class="chapter-button" type="button" data-goto="6"><span class="chapter-track"><i></i></span><span>Chúng mình</span></button>
+    </nav>
+    <div class="footer-bottom"><span class="navigation-hint">Cuộn nhẹ hoặc dùng phím trái / phải</span><div class="scene-controls"><button id="previous" class="text-button" type="button" disabled>Trở lại</button><span class="control-divider"></span><button id="next" class="text-button next-button" type="button">Cảnh tiếp</button></div></div>
+  </footer>
+
+  <dialog id="chapters-dialog" class="chapters-dialog" aria-labelledby="chapters-title">
+    <div class="dialog-top"><span class="eyebrow">TỪ MỘT NGƯỜI XA LẠ</span><button id="chapters-close" class="icon-button" type="button" aria-label="Đóng các chương">×</button></div>
+    <h2 id="chapters-title">Đến một người <em>đặc biệt.</em></h2>
+    <nav aria-label="Các chương của câu chuyện">
+      <button type="button" data-goto="0"><span>Trước khi có em</span><small>Những ngày đen trắng</small></button>
+      <button type="button" data-goto="1"><span>Một bài viết trên Threads</span><small>Những bình luận đầu tiên</small></button>
+      <button type="button" data-goto="2"><span>Nhắn cho em</span><small>Hai thế giới bắt đầu chạm nhau</small></button>
+      <button type="button" data-goto="3"><span>Chúng mình gặp nhau</span><small>Từ màn hình đến ngoài đời</small></button>
+      <button type="button" data-goto="4"><span>Gần nhau thêm một chút</span><small>Những cái ôm và nụ hôn</small></button>
+      <button type="button" data-goto="5"><span>Những ngày bắt đầu có màu</span><small>Gom góp những kỷ niệm</small></button>
+      <button type="button" data-goto="6"><span>Kể từ khi có em</span><small>Câu chuyện còn đang viết</small></button>
+    </nav>
+  </dialog>
+  <p id="announcer" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+  <noscript><p class="noscript-message">Bật JavaScript để xem hoạt cảnh và chuyển qua các chương.</p></noscript>
+</body>
+</html>
