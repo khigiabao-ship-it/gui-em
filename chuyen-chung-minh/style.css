@@ -37,3 +37,16 @@ body[data-chapter="1"]{--gray:.8;--landscape-opacity:.29;--warm-opacity:.15;--sc
 @media(max-width:360px){.slide-copy{margin-inline:21px}.slide h2{font-size:1.8rem}.navigation-hint:after{font-size:.62rem}.scene-controls{gap:8px}.scene-controls>.text-button{font-size:.75rem}.final-caption{font-size:.85rem}}
 @media(orientation:landscape) and (max-height:500px){.slide{display:block;padding-bottom:0}.slide-copy{position:absolute;left:6vw;top:50%;width:49%;max-width:none;transform:translateY(-50%);margin:0;padding:0}.slide>.stage-art{position:absolute;left:auto;right:2%;top:1%;bottom:1%;height:auto;width:43%}.slide>.routine-art{width:40%;right:3%}.slide>.embrace-art,.slide>.final-art{width:43%}.slide h2{font-size:2rem}.navigation-hint{font-size:.65rem}.navigation-hint:after{content:none}.footer-bottom{min-height:33px}.scene-controls>.text-button{font-size:.72rem;min-height:33px}.memory-card{width:100px}.phone{max-height:100%}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.is-active .comment,.is-active .chat-bubble,.is-active .sent-note{opacity:1}.embrace-heart{opacity:.7}.meeting-boy,.meeting-girl{opacity:1}.scene-wipe{display:none}.particles{display:none}}
+
+/* Match the couple's standing heights (154 cm / 173 cm) in every shared scene.
+   Auto width keeps object-fit from making different-height figures look equal. */
+:root{--couple-height-ratio:.8901734104}
+.story-stage{overflow:hidden;overflow:clip}
+.meeting-art{--man-height:88%;--person-floor:5%}
+.final-art{--man-height:87%;--person-floor:7%}
+.meeting-boy,.meeting-girl,.final-boy,.final-girl{width:auto;max-width:none;bottom:var(--person-floor);object-fit:contain}
+.meeting-boy,.final-boy{height:var(--man-height)}
+.meeting-girl,.final-girl{height:calc(var(--man-height)*var(--couple-height-ratio))}
+.second-memory img{max-width:none}
+.second-memory img:last-child{height:calc(118%*var(--couple-height-ratio))}
+@media(max-width:760px){.meeting-art{--man-height:96%;--person-floor:0%}.final-art{--man-height:95%;--person-floor:2%}}

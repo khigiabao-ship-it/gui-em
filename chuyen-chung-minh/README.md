@@ -2,7 +2,9 @@
 
 Một câu chuyện tình cảm bằng bảy hoạt cảnh: cuộc sống đen trắng → bình luận trên Threads → nhắn tin → gặp nhau → cái ôm và nụ hôn → thêm kỷ niệm → thế giới có màu sắc hơn.
 
-Nội dung dựa trên những mốc do người kể cung cấp. Các khung Threads và tin nhắn là minh họa; không chép hay tự dựng lời trò chuyện thật. Nhân vật và cảnh nền là tranh minh họa, không phải chân dung hay ảnh kỷ niệm.
+Nội dung dựa trên những mốc do người kể cung cấp. Các khung Threads và tin nhắn là minh họa; không chép hay tự dựng lời trò chuyện thật. Nhân vật được vẽ theo ảnh tham khảo của hai người, giữ phong cách tranh gouache; cảnh nền mang tính minh họa.
+
+Phiên bản nhân vật cá nhân hóa dùng các ảnh `him-v2.webp`, `her-v2.webp` và `together-v2.webp`. Bạn nam tóc layer, đeo kính; bạn nữ tóc dài. Các cảnh đứng chung dùng tỷ lệ chiều cao `154 / 173`, với hai nhân vật cùng đường chân. Ảnh tham khảo gốc không nằm trong mã nguồn website.
 
 ## Chạy và xuất bản
 
