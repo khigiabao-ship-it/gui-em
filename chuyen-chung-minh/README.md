@@ -4,7 +4,7 @@ Một câu chuyện tình cảm bằng bảy hoạt cảnh: cuộc sống đen t
 
 Nội dung dựa trên những mốc do người kể cung cấp. Các khung Threads và tin nhắn là minh họa; không chép hay tự dựng lời trò chuyện thật. Nhân vật được vẽ theo ảnh tham khảo của hai người, giữ phong cách tranh gouache; cảnh nền mang tính minh họa.
 
-Phiên bản nhân vật cá nhân hóa dùng các ảnh `him-v2.webp`, `her-v2.webp` và `together-v2.webp`. Bạn nam tóc layer, đeo kính; bạn nữ tóc dài. Các cảnh đứng chung dùng tỷ lệ chiều cao `154 / 173`, với hai nhân vật cùng đường chân. Ảnh tham khảo gốc không nằm trong mã nguồn website.
+Phiên bản nhân vật cá nhân hóa dùng các ảnh `him-v3.webp`, `her-v2.webp` và `together-v3.webp`. Bạn nam tóc layer, đeo kính, mặc sơ mi trắng mềm rũ hơi rộng và quần suông đen cạp cao; đầu được thu nhỏ nhẹ và phần áo ngắn hơn để tôn tỷ lệ chân. Bạn nữ tóc dài. Các cảnh đứng chung dùng tỷ lệ chiều cao `154 / 173`, với hai nhân vật cùng đường chân. Ảnh tham khảo gốc không nằm trong mã nguồn website.
 
 ## Chạy và xuất bản
 
@@ -24,3 +24,4 @@ Trên GitHub, các tệp trong `dist/` được đặt trực tiếp trong thư 
 Lời kể nằm trong `dist/index.html`, chuyển cảnh trong `dist/story.js`, hình thức trong `dist/style.css`. Ảnh, phông chữ và biểu tượng đều tải từ cùng thư mục; không phụ thuộc CDN, không theo dõi người xem và không thu thập dữ liệu.
 
 Tranh nền, hai nhân vật và tranh ôm nhau được tạo riêng cho website, sau đó mã hóa WebP để tải nhanh. Phông chữ Noto Serif và Open Sans được đóng gói cục bộ kèm giấy phép trong `dist/assets/FONT-LICENSES.txt`.
+
