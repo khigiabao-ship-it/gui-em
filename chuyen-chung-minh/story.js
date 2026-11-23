@@ -140,6 +140,7 @@
   });
 
   window.addEventListener('keydown', event => {
+    if (event.target.closest('.threads-scroll') && ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) return;
     if (dialog.open || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName) || event.altKey || event.ctrlKey || event.metaKey) return;
     if (event.key === 'ArrowRight' || event.key === 'PageDown') {
       event.preventDefault();
@@ -162,6 +163,8 @@
 
   stage.addEventListener('wheel', event => {
     if (dialog.open || event.ctrlKey || event.metaKey) return;
+    // Let readers scroll the actual post without changing the chapter.
+    if (event.target.closest('.threads-scroll') || (slides[current].id === 'threads' && slides[current].scrollHeight > slides[current].clientHeight + 1)) return;
     const now = performance.now();
     const delta = (Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX) * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
     if (now < wheelLock) return;
