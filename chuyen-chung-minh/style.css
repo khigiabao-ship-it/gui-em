@@ -50,3 +50,50 @@ body[data-chapter="1"]{--gray:.8;--landscape-opacity:.29;--warm-opacity:.15;--sc
 .second-memory img{max-width:none}
 .second-memory img:last-child{height:calc(118%*var(--couple-height-ratio))}
 @media(max-width:760px){.meeting-art{--man-height:96%;--person-floor:0%}.final-art{--man-height:95%;--person-floor:2%}}
+
+/* The opening stays still in a wall corner; the last scene ends in a running hug. */
+.routine-art .corner-room{position:absolute;inset:0;width:100%;height:100%;opacity:.86;mask-image:radial-gradient(ellipse at 50% 55%,#000 35%,transparent 76%)}
+.corner-shadow{position:absolute;left:25%;right:13%;bottom:12%;height:9%;border-radius:50%;background:#06080de0;filter:blur(14px)}
+.routine-art .seated-character{position:absolute;left:53%;bottom:12%;height:74%;width:auto;max-width:86%;object-fit:contain;transform:translateX(-50%);filter:grayscale(1) brightness(.66);animation:seated-breathe 6s ease-in-out infinite}
+.routine-art .routine-caption{bottom:3%}
+.final-art{overflow:hidden}
+.finale-actors{position:absolute;left:0;bottom:5%;width:100%;height:94%;overflow:visible;opacity:0;transition:opacity .35s ease}
+.final-art.is-ready .finale-actors{opacity:1}
+.final-welcome,.final-run-path{opacity:0}
+.final-catch{opacity:1;transform-origin:650px 1510px}
+.final-run-bob{transform-origin:700px 1400px}
+#chung-minh.is-active .final-art.is-ready:not(.is-still) .final-welcome{animation:welcome-the-hug 6.4s linear both}
+#chung-minh.is-active .final-art.is-ready:not(.is-still) .final-run-path{animation:run-to-him 6.4s linear both}
+#chung-minh.is-active .final-art.is-ready:not(.is-still) .final-run-bob{animation:running-steps .26s .9s 11 ease-in-out alternate}
+#chung-minh.is-active .final-art.is-ready:not(.is-still) .final-catch{animation:catch-and-settle 6.4s linear both}
+#chung-minh .final-heart{opacity:0}
+#chung-minh.is-active .final-art.is-ready .final-heart{animation:embrace-heart-arrive 1.3s 4s ease-out both}
+@keyframes seated-breathe{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(2px)}}
+@keyframes welcome-the-hug{0%{opacity:0;transform:translateY(12px)}10%,57%{opacity:1;transform:translateY(0)}61%,100%{opacity:0;transform:translateY(0)}}
+@keyframes run-to-him{0%,13%{opacity:0;transform:translateX(970px)}17%{opacity:1;transform:translateX(920px)}27%{opacity:1;transform:translateX(760px)}39%{opacity:1;transform:translateX(480px)}50%{opacity:1;transform:translateX(200px)}57%{opacity:1;transform:translateX(0)}61%,100%{opacity:0;transform:translateX(-12px)}}
+@keyframes running-steps{from{transform:translateY(0) rotate(.4deg)}to{transform:translateY(-14px) rotate(-.6deg)}}
+@keyframes catch-and-settle{0%,57%{opacity:0;transform:translateX(20px) rotate(0)}61%{opacity:1;transform:translateX(0) rotate(0)}68%{opacity:1;transform:translateX(-22px) rotate(-2.5deg)}79%{opacity:1;transform:translateX(-7px) rotate(.8deg)}90%,100%{opacity:1;transform:translateX(-10px) rotate(0)}}
+@keyframes embrace-heart-arrive{0%{opacity:0;transform:translateY(15px) scale(.7)}65%{opacity:.9;transform:translateY(-3px) scale(1.1)}100%{opacity:.8;transform:translateY(0) scale(1)}}
+@media(max-width:760px){
+ .slide>.routine-art{width:91%}
+ .routine-art .seated-character{height:91%;bottom:3%;max-width:86%}
+ .routine-art .corner-shadow{bottom:3%}
+ .routine-art .corner-room{inset:-5% 0 0;height:110%}
+ .routine-art .routine-caption{display:none}
+ .slide>.final-art{width:96%;padding:0}
+ .finale-actors{bottom:7%;height:93%}
+ #chung-minh .final-heart{top:0;left:48%;font-size:2rem}
+ .final-caption{bottom:0}
+}
+@media(orientation:landscape) and (max-height:500px){
+ .slide>.routine-art{width:43%}
+ .routine-art .seated-character{height:88%;bottom:3%}
+ .slide>.final-art{width:44%}
+ .finale-actors{height:100%;bottom:0}
+}
+@media(prefers-reduced-motion:reduce){
+ .final-art .finale-actors{opacity:1}
+ #chung-minh .final-welcome,#chung-minh .final-run-path{opacity:0}
+ #chung-minh .final-catch{opacity:1;transform:none}
+ #chung-minh .final-heart{opacity:.8}
+}

@@ -199,6 +199,17 @@
   });
 
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  // Start the embrace only when every pose is decoded, including on a deep link.
+  const finaleArt = document.querySelector('.final-art');
+  const finalePoses = [...finaleArt.querySelectorAll('image')].map(pose => {
+    const image = new Image();
+    image.src = pose.getAttribute('href');
+    return image.decode();
+  });
+  Promise.allSettled(finalePoses).then(results => {
+    if (results.some(result => result.status === 'rejected')) finaleArt.classList.add('is-still');
+    finaleArt.classList.add('is-ready');
+  });
   if (!reducedMotion.matches) {
     const fragment = document.createDocumentFragment();
     for (let i = 0; i < 22; i++) {

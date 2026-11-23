@@ -13,8 +13,8 @@
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="./assets/night-garden.webp" as="image" fetchpriority="high">
   <link rel="preload" href="./assets/story-serif.woff" as="font" type="font/woff" crossorigin>
-  <link rel="stylesheet" href="./style.css?v=portraits-v2">
-  <script src="./story.js" defer></script>
+  <link rel="stylesheet" href="./style.css?v=scenes-v4">
+  <script src="./story.js?v=scenes-v4" defer></script>
 </head>
 <body data-chapter="0">
   <a class="skip-link" href="#story-title-0">Đến câu chuyện</a>
@@ -53,13 +53,16 @@
         <p class="handwritten intro-note">Rồi một người xuất hiện…</p>
       </div>
       <div class="stage-art routine-art" aria-hidden="true">
-        <div class="clock-ring"><span></span></div>
-        <div class="routine-path"></div>
-        <div class="routine-chip work-chip"><svg viewBox="0 0 32 32"><path d="M5 12h22v15H5zM11 12V7h10v5M5 18h22M14 18v4h4v-4"/></svg><span>Đi làm</span></div>
-        <div class="routine-chip home-chip"><svg viewBox="0 0 32 32"><path d="m4 15 12-10 12 10M8 13v14h16V13M13 27V17h6v10"/></svg><span>Về nhà</span></div>
-        <div class="routine-chip eat-chip"><svg viewBox="0 0 32 32"><path d="M5 17h22a11 11 0 0 1-22 0ZM3 17h26M12 5v6M18 3v7M24 6v5"/></svg><span>Ăn uống</span></div>
-        <div class="routine-chip sleep-chip"><svg viewBox="0 0 32 32"><path d="M25 21A12 12 0 0 1 11 5a12 12 0 1 0 14 16Z"/></svg><span>Ngủ nghỉ</span></div>
-        <img class="lone-character" src="./assets/him-v3.webp" alt="" decoding="async">
+        <svg class="corner-room" viewBox="0 0 700 600" fill="none">
+          <defs><radialGradient id="corner-light"><stop stop-color="#343743" stop-opacity=".32"/><stop offset="1" stop-color="#11141c" stop-opacity="0"/></radialGradient></defs>
+          <path d="M12 20 350 78 350 422 12 574Z" fill="#252833" fill-opacity=".68"/>
+          <path d="M350 78 688 20 688 574 350 422Z" fill="#151922" fill-opacity=".88"/>
+          <path d="m12 574 338-152 338 152Z" fill="#0e1119"/>
+          <path d="M350 78v344L12 574m338-152 338 152" stroke="#a6a9b9" stroke-opacity=".2" stroke-width="1.5"/>
+          <ellipse cx="350" cy="330" rx="335" ry="280" fill="url(#corner-light)"/>
+        </svg>
+        <div class="corner-shadow"></div>
+        <img class="seated-character" src="./assets/seated-v4.webp" alt="" decoding="async" fetchpriority="high">
         <span class="routine-caption">rồi lại một ngày như thế.</span>
       </div>
     </section>
@@ -167,10 +170,14 @@
         <p class="handwritten final-note">Những trang tiếp theo, mình cùng viết nhé.</p>
         <button id="replay" class="primary-button replay-button" type="button">Kể lại từ đầu</button>
       </div>
-      <div class="stage-art final-art" aria-hidden="true">
-        <div class="final-sun"></div><div class="final-ring"></div>
-        <img class="final-boy" src="./assets/him-v3.webp" alt="" decoding="async"><img class="final-girl" src="./assets/her-v2.webp" alt="" decoding="async">
-        <div class="final-heart">♡</div><span class="final-caption">kể từ khi có em.</span>
+      <div class="stage-art final-art" role="img" aria-label="Anh dang hai tay đón em. Em chạy tới ôm, anh hơi ngả ra sau rồi ôm em trong lòng.">
+        <div class="final-sun" aria-hidden="true"></div><div class="final-ring" aria-hidden="true"></div>
+        <svg class="finale-actors" viewBox="0 0 1600 1600" fill="none" aria-hidden="true" focusable="false">
+          <g class="final-welcome"><image href="./assets/welcome-v4.webp" x="180" y="25" width="1024" height="1536"/></g>
+          <g class="final-run-path"><g class="final-run-bob"><image href="./assets/running-v4.webp" x="260" y="194" width="911.54" height="1367"/></g></g>
+          <g class="final-catch"><image href="./assets/catch-v4.webp" x="305" y="25" width="1024" height="1536"/></g>
+        </svg>
+        <div class="final-heart" aria-hidden="true">♡</div><span class="final-caption" aria-hidden="true">kể từ khi có em.</span>
       </div>
     </section>
     <div class="scene-wipe" aria-hidden="true"></div>
@@ -207,4 +214,3 @@
   <noscript><p class="noscript-message">Bật JavaScript để xem hoạt cảnh và chuyển qua các chương.</p></noscript>
 </body>
 </html>
-
