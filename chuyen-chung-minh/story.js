@@ -14,7 +14,7 @@
     'Một bình luận, mở đầu một câu chuyện.',
     'Hai thế giới bắt đầu chạm nhau.',
     'Người trong màn hình, giờ ở ngay đây.',
-    'Thân thiết hơn, từng chút một.',
+    'Chỉ nghe nhạc, và ngồi cạnh nhau.',
     'Gom những điều nhỏ bé thành kỷ niệm.',
     'Và những trang tiếp theo, mình cùng viết.'
   ];
