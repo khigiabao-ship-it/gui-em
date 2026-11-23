@@ -210,3 +210,23 @@ body[data-chapter="1"]{--gray:.8;--landscape-opacity:.29;--warm-opacity:.15;--sc
  .dm-timestamp{margin-bottom:12px}
  .dm-messages>li{padding:7px 12px}
 }
+
+
+/* One parent post and its indented reply share a continuous conversation line. */
+#threads .threads-root-post{position:relative;display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
+#threads .threads-root-post:before{content:"";position:absolute;left:19px;top:50px;bottom:0;width:2px;border-radius:2px;background:#4a5364;pointer-events:none}
+#threads .threads-post-content:before{display:none}
+#threads .threads-reply{margin:20px 0 0 52px;padding:0;border:0}
+#threads .threads-reply:before{content:"";position:absolute;left:-33px;top:-22px;width:22px;height:42px;border-left:2px solid #4a5364;border-bottom:2px solid #4a5364;border-bottom-left-radius:16px;pointer-events:none}
+@media(max-width:760px){
+ #threads .threads-root-post{display:block}
+ #threads .threads-root-post:before{left:16px;top:44px}
+ #threads .threads-reply{margin-left:44px}
+ #threads .threads-reply:before{left:-28px;width:20px;height:39px}
+}
+@media(orientation:landscape) and (max-height:500px){
+ #threads .threads-root-post{display:flex}
+ #threads .threads-root-post:before{left:13px;top:38px}
+ #threads .threads-reply{margin:18px 0 0 36px;padding:0}
+ #threads .threads-reply:before{left:-23px;top:-20px;width:16px;height:34px}
+}
