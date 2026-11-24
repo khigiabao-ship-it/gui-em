@@ -10,14 +10,14 @@
   const dialog = document.querySelector('#chapters-dialog');
   const stage = document.querySelector('#story');
   const captions = [
-    'Một thế giới chưa có em.',
-    'Một bình luận, mở đầu một câu chuyện.',
-    'Hai thế giới bắt đầu chạm nhau.',
-    'Người trong màn hình, giờ ở ngay đây.',
-    'Mỗi người một việc, vẫn ở cạnh nhau.',
-    'Chỉ nghe nhạc, và ngồi cạnh nhau.',
-    'Gom những điều nhỏ bé thành kỷ niệm.',
-    'Và những trang tiếp theo, mình cùng viết.'
+    'Ngày dài vắng em',
+    'Thế giới ảo tình yêu thật',
+    'Yêu em qua dòng tin nhắn',
+    'Thích em hơi nhiều',
+    'Nắm lấy tay anh',
+    'Nơi này có anh',
+    'Ánh nắng của anh',
+    'Hơn cả yêu'
   ];
   let current = 0;
   let playing = false;
