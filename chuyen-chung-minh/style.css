@@ -356,6 +356,7 @@ body:not([data-chapter="0"]) .chapter-button.is-current{color:var(--accent)}
 body:not([data-chapter="0"]) .chapter-button:hover{color:var(--theme-ink)}
 body:not([data-chapter="0"]) .chapter-track{background:var(--theme-track)}
 body:not([data-chapter="0"]) .control-divider{background:var(--theme-line)}
+body:not([data-chapter="0"]) .next-button{color:var(--theme-ink)}
 body:not([data-chapter="0"]) :is(.library-work-art,.meeting-cafe-art,.lake-night-art)>figcaption,
 body:not([data-chapter="0"]) :is(.memories-caption,.final-caption){color:var(--theme-soft);text-shadow:none}
 body:not([data-chapter="0"]) :is(.library-work-scene,.cafe-meeting-scene,.lake-night-scene){
