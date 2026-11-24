@@ -28,3 +28,5 @@ Trên GitHub, các tệp trong `dist/` được đặt trực tiếp trong thư 
 Lời kể nằm trong `dist/index.html`, chuyển cảnh trong `dist/story.js`, hình thức trong `dist/style.css`. Ảnh, phông chữ và biểu tượng đều tải từ cùng thư mục; không phụ thuộc CDN, không theo dõi người xem và không thu thập dữ liệu.
 
 Tranh nền, hai nhân vật và tranh ôm nhau được tạo riêng cho website, sau đó mã hóa WebP để tải nhanh. Phông chữ Noto Serif và Open Sans được đóng gói cục bộ kèm giấy phép trong `dist/assets/FONT-LICENSES.txt`.
+
+Ba chương thư viện, Café Nhà Kể và Hồ An Bình dùng đúng tranh của từng cảnh làm nền tràn, làm mờ nhẹ và phủ ánh trắng hồng để chữ dễ đọc. Tranh chính giữ sắc nét.

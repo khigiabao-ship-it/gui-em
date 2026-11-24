@@ -386,3 +386,34 @@ body{transition:background 1.3s ease,color 1.5s ease}
   .dawn-bloom{display:none}
   .dawn-surface{transition:none}
 }
+
+
+/* Each shared place fills its own chapter, softly behind the story. */
+:is(.cafe-ambience,.library-ambience,.lake-ambience){
+  filter:blur(10px) saturate(.88) brightness(1.03);
+  transform:scale(1.08);
+  transition:opacity 1.4s ease
+}
+body[data-chapter="3"] .library-ambience,
+body[data-chapter="4"] .cafe-ambience,
+body[data-chapter="5"] .lake-ambience{opacity:1}
+.library-ambience{object-position:50% 46%}
+.cafe-ambience{object-position:50% 48%}
+.lake-ambience{object-position:50% 42%}
+.location-wash{
+  position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:
+    linear-gradient(90deg,#fff8fcf2 0%,#fff6fae8 35%,#fff2f9a3 63%,#ffeaf254 100%),
+    linear-gradient(0deg,#fff4f9ed 0%,#fff4f900 32%,#fff8fb00 76%,#fff8fbc9 100%);
+  transition:opacity 1.4s ease
+}
+body:is([data-chapter="3"],[data-chapter="4"],[data-chapter="5"]) .location-wash{opacity:1}
+@media(max-width:760px){
+  :is(.cafe-ambience,.library-ambience,.lake-ambience){filter:blur(8px) saturate(.88) brightness(1.03)}
+  .location-wash{
+    background:linear-gradient(180deg,#fff8fbe8 0%,#fff6fbd9 42%,#fff0f6a6 68%,#fff4f9ef 100%)
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  :is(.cafe-ambience,.library-ambience,.lake-ambience,.location-wash){transition:none}
+}
