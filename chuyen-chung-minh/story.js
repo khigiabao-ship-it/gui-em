@@ -16,6 +16,7 @@
     'Thích em hơi nhiều',
     'Nắm lấy tay anh',
     'Nơi này có anh',
+    'Nép vào anh và nghe anh hát',
     'Ánh nắng của anh',
     'Hơn cả yêu'
   ];
