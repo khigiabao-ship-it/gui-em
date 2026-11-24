@@ -51,6 +51,7 @@
       slide.setAttribute('aria-hidden', String(!active));
     });
     document.body.dataset.chapter = String(current);
+    document.querySelector('meta[name="theme-color"]').content = getComputedStyle(document.body).getPropertyValue('--chrome-color').trim() || '#0b0d13';
     chapterButtons.forEach(button => {
       const active = Number(button.dataset.goto) === current;
       if (active) button.setAttribute('aria-current', 'step');
