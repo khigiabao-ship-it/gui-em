@@ -462,3 +462,59 @@ body[data-chapter="6"] .landscape{opacity:0}
   .guitar-performance-art>figcaption{font-size:.72rem}
 }
 @media(prefers-reduced-motion:reduce){.guitar-ambience{transition:none}}
+
+
+/* The final words open onto a moonlit blue sky. */
+.finale-night-sky{
+  position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:
+    radial-gradient(ellipse at 84% 24%,#7699c342,transparent 36%),
+    radial-gradient(ellipse at 25% 104%,#5e74a052,transparent 62%),
+    linear-gradient(155deg,#0c1930 3%,#172d4e 48%,#36587e 100%);
+  transition:opacity 1.6s ease
+}
+.finale-night-sky::before{
+  content:"";position:absolute;inset:0;opacity:.35;
+  background:
+    radial-gradient(ellipse 56% 8% at 25% 27%,#b4c8e22b,transparent 80%),
+    radial-gradient(ellipse 46% 9% at 92% 55%,#b4c8e238,transparent 80%),
+    radial-gradient(ellipse 56% 7% at 36% 80%,#a5b6d02b,transparent 85%);
+  filter:blur(16px)
+}
+.finale-stars{
+  position:absolute;inset:0;opacity:.75;
+  background:
+    radial-gradient(circle at 12% 19%,#e8f3ffb3 0 1px,transparent 1.6px),
+    radial-gradient(circle at 27% 11%,#e8f3ff9c 0 1px,transparent 1.7px),
+    radial-gradient(circle at 40% 23%,#e8f3ffb3 0 1px,transparent 1.7px),
+    radial-gradient(circle at 58% 14%,#e8f3ffbf 0 1px,transparent 1.9px),
+    radial-gradient(circle at 65% 34%,#e8f3ff8c 0 1px,transparent 1.6px),
+    radial-gradient(circle at 95% 15%,#e8f3ff9c 0 1px,transparent 1.7px),
+    radial-gradient(circle at 94% 53%,#e8f3ffb3 0 1px,transparent 1.8px),
+    radial-gradient(circle at 83% 69%,#e8f3ff80 0 1px,transparent 1.7px),
+    radial-gradient(circle at 45% 68%,#e8f3ff9c 0 1px,transparent 1.7px),
+    radial-gradient(circle at 8% 60%,#e8f3ff80 0 1px,transparent 1.6px)
+}
+.full-moon{
+  position:absolute;top:15%;right:4.5%;width:clamp(160px,16vw,255px);
+  aspect-ratio:1;object-fit:contain;
+  filter:drop-shadow(0 0 18px #e6effa52) drop-shadow(0 0 64px #d5e5fb33)
+}
+body[data-chapter="8"]{
+  color-scheme:dark;--chrome-color:#111f3a;
+  --theme-ink:#fbf6ed;--theme-body:#dde8f6;--theme-muted:#bbcce4;
+  --theme-past:#c4d3e9;--theme-soft:#efd5e3;--theme-line:#d5e7fb33;
+  --theme-track:#d5e7fb29;--theme-dialog:#12243e;--theme-shadow:#030c1e88;
+  --theme-backdrop:#030b1bd9;--theme-art-shadow:#02091944;
+  --theme-button-ink:#15213b;--accent:#f1d3df;--rose:#f1d3df
+}
+body[data-chapter="8"] .finale-night-sky{opacity:1}
+body[data-chapter="8"] .primary-button:hover{background:#f8e3eb;border-color:#f8e3eb}
+#chung-minh :is(.final-sun,.final-ring){display:none}
+@media(max-width:760px){
+  .full-moon{top:106px;right:12px;width:96px}
+}
+@media(orientation:landscape) and (max-height:500px){
+  .full-moon{top:15%;right:3%;width:clamp(90px,14vw,150px)}
+}
+@media(prefers-reduced-motion:reduce){.finale-night-sky{transition:none}}

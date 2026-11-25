@@ -32,3 +32,5 @@ Tranh nền, hai nhân vật và tranh ôm nhau được tạo riêng cho websit
 Ba chương thư viện, Café Nhà Kể và Hồ An Bình dùng đúng tranh của từng cảnh làm nền tràn, làm mờ nhẹ và phủ ánh trắng hồng để chữ dễ đọc. Tranh chính giữ sắc nét.
 
 Slide “Nép vào anh và nghe anh hát” (`nghe-anh-hat`) nằm ngay sau “Nơi này có anh”, trước “Ánh nắng của anh”. Tranh `guitar-evening-v24.webp` dùng tư thế và gương mặt từ ảnh đầu với căn phòng trong ảnh thứ hai do người kể gửi, vẽ lại cùng phong cách của website; không giữ viền sticker, nền hồng caro hay giao diện trình phát video. Tranh chính rõ nét, nền tràn dùng cùng tranh làm mờ nhẹ. Tổng cộng chín chương; menu, phím chuyển cảnh, đếm cảnh và tự chạy đều theo thứ tự này.
+
+Cảnh cuối dùng nền trời đêm xanh dịu, sao thưa và một mặt trăng tròn có bề mặt minh họa (`full-moon-v26.webp`). Trăng được đặt riêng để luôn tròn và hiện trọn trên máy tính lẫn điện thoại; chữ, nút và menu chuyển sang bảng màu sáng trên nền trời. Những cảnh trước vẫn giữ bảng màu và nền đã có.
