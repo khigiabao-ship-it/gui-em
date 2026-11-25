@@ -11,7 +11,7 @@
   const stage = document.querySelector('#story');
   const captions = [
     'Ngày dài vắng em',
-    'Thế giới ảo tình yêu thật',
+    'Tìm thấy nhau',
     'Yêu em qua dòng tin nhắn',
     'Thích em hơi nhiều',
     'Nắm lấy tay anh',

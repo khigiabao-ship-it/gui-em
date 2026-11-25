@@ -12,12 +12,40 @@
       src: './assets/audio/ngay-dai-vang-em-chorus-v29.mp3'
     },
     'threads': {
-      title: 'Thế giới ảo tình yêu thật',
-      src: './assets/audio/the-gioi-ao-tinh-yeu-that-chorus-v29.mp3'
+      title: 'Tìm thấy nhau',
+      src: './assets/audio/tim-thay-nhau-chorus-v30.mp3'
     },
     'tin-nhan': {
       title: 'Yêu em qua dòng tin nhắn',
       src: './assets/audio/yeu-em-qua-dong-tin-nhan-chorus-v29.mp3'
+    },
+    'thu-vien': {
+      title: 'Thích em hơi nhiều',
+      src: './assets/audio/thich-em-hoi-nhieu-chorus-v30.mp3'
+    },
+    'gap-nhau': {
+      title: 'Nắm lấy tay anh',
+      src: './assets/audio/nam-lay-tay-anh-chorus-v30.mp3'
+    },
+    'gan-hon': {
+      title: 'Nơi này có anh',
+      src: './assets/audio/noi-nay-co-anh-chorus-v30.mp3'
+    },
+    'nghe-anh-hat': {
+      title: 'Nép vào anh và nghe anh hát',
+      src: './assets/audio/nep-vao-anh-va-nghe-anh-hat-chorus-v30.mp3'
+    },
+    'stay-please': {
+      title: 'Stay, please',
+      src: './assets/audio/stay-please-chorus-v30.mp3'
+    },
+    'co-mau': {
+      title: 'Ánh nắng của anh',
+      src: './assets/audio/anh-nang-cua-anh-chorus-v30.mp3'
+    },
+    'chung-minh': {
+      title: 'Hơn cả yêu',
+      src: './assets/audio/hon-ca-yeu-chorus-v30.mp3'
     }
   };
   let enabled = false;
@@ -40,7 +68,7 @@
       loading: track ? 'Đang tải nhạc: ' + track.title + '.' : '',
       playing: track ? 'Đang phát điệp khúc: ' + track.title + '.' : '',
       ended: 'Đã hết điệp khúc. Chuyển cảnh để nghe bài tiếp theo.',
-      unavailable: 'Cảnh này chưa có nhạc. Nhạc sẽ phát khi bạn trở lại một trong ba cảnh đầu.',
+      unavailable: 'Cảnh này chưa có nhạc.',
       blocked: 'Bấm Bật nhạc một lần nữa để trình duyệt cho phép phát âm thanh.',
       error: 'Chưa tải được nhạc. Bấm Bật nhạc để thử lại.'
     };

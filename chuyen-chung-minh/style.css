@@ -582,3 +582,11 @@ body[data-chapter="7"] .landscape{opacity:0}
 }
 
 #story-music{display:none}
+
+@media(max-width:360px){
+  .site-header{gap:6px}
+  .wordmark{gap:5px}
+  .wordmark>svg{width:20px;height:20px}
+  .header-actions{gap:2px}
+  .music-toggle,.auto-button,.header-actions .icon-button{width:32px;min-width:32px}
+}

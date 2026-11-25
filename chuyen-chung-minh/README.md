@@ -2,7 +2,7 @@
 
 Một câu chuyện tình cảm bằng mười hoạt cảnh: cuộc sống đen trắng → bình luận trên Threads → nhắn tin → cùng làm việc ở thư viện → hẹn gặp ở Café Nhà Kể → tựa vai nghe nhạc bên hồ → đàn và hát cho em nghe → trước gương và đọc thư bên Hồ Gươm → thêm kỷ niệm → thế giới có màu sắc hơn.
 
-Tên chương trên thanh chọn cảnh, menu và dòng tên cảnh dùng tên bài hát, không kèm ca sĩ: “Ngày dài vắng em” → “Thế giới ảo tình yêu thật” → “Yêu em qua dòng tin nhắn” → “Thích em hơi nhiều” → “Nắm lấy tay anh” → “Nơi này có anh” → “Nép vào anh và nghe anh hát” → “Stay, please” → “Ánh nắng của anh” → “Hơn cả yêu”. Các tên dài tự xuống dòng trên màn hình máy tính; menu giữ mô tả ngắn của từng kỷ niệm.
+Tên chương trên thanh chọn cảnh, menu và dòng tên cảnh dùng tên bài hát, không kèm ca sĩ: “Ngày dài vắng em” → “Tìm thấy nhau” → “Yêu em qua dòng tin nhắn” → “Thích em hơi nhiều” → “Nắm lấy tay anh” → “Nơi này có anh” → “Nép vào anh và nghe anh hát” → “Stay, please” → “Ánh nắng của anh” → “Hơn cả yêu”. Các tên dài tự xuống dòng trên màn hình máy tính; menu giữ mô tả ngắn của từng kỷ niệm.
 
 Màu nền giữ tối ở chương mở đầu, bừng ánh hồng khi vào Threads rồi sáng dần qua mười chương, kết ở nền trắng hồng. Màu chữ, thanh chọn cảnh, nút và menu thay đổi theo độ sáng; khung bài Threads và hội thoại giữ màu riêng. Hiệu ứng ánh sáng tôn trọng thiết lập giảm chuyển động.
 
@@ -37,17 +37,23 @@ Cảnh cuối dùng nền trời đêm xanh dịu, sao thưa và một mặt tr�
 
 Chương “Stay, please” (`stay-please`) nằm sau “Nép vào anh và nghe anh hát”. Hai tranh trong cùng một cảnh: ảnh trước gương được phác lại từ ảnh người kể gửi (`stay-mirror-v27.webp`); hai người ngồi bên Hồ Gươm hướng ra Tháp Rùa, mỗi người đọc một bức thư do đối phương viết (`stay-letters-v27.webp`). Giữ áo khoác đen và áo đỏ của bạn nam, cardigan trắng và quần tối màu của bạn nữ trong cả hai tranh. Khung cảnh hồ đối chiếu [Hà Nội Go](https://hanoigo.hanoi.gov.vn/en/place/ho-hoan-kiem-va-den-ngoc-son-ctv-53wqrq). Nền tràn dùng tranh đọc thư làm mờ; hai tranh chính được trình bày cùng nhau, giữ nguyên khung hình. Trên điện thoại ngắn có thể cuộn dọc để xem đủ hai tranh. Menu, thanh chọn cảnh và tự chạy có tổng cộng mười chương; bầu trời trăng tròn vẫn là cảnh cuối.
 
+### Nhạc theo cảnh (v30)
 
-### Nhạc theo cảnh (v29)
-
-Ba file do người kể cung cấp được cắt thành các đoạn điệp khúc riêng:
+Cả mười chương có một đoạn nhạc riêng, lấy từ các MP3 do người kể cung cấp. Chương Threads được đổi tên thành “Tìm thấy nhau”, thay bài cũ bằng đoạn của SIVAN. Hai đoạn “Ngày dài vắng em” và “Yêu em qua dòng tin nhắn” giữ nguyên bản đã nghe thử.
 
 | Cảnh | Bài | Khoảng lấy từ file gốc |
 | --- | --- | --- |
 | `truoc-khi` | Ngày dài vắng em | 00:43.8–01:16.2 |
-| `threads` | Thế giới ảo tình yêu thật | 00:50.8–01:33.8 |
+| `threads` | Tìm thấy nhau | 00:51.5–01:40.0 |
 | `tin-nhan` | Yêu em qua dòng tin nhắn | 01:19.8–02:09.3 |
+| `thu-vien` | Thích em hơi nhiều | 00:49.8–01:16.2 |
+| `gap-nhau` | Nắm lấy tay anh | 01:10.0–01:51.5 |
+| `gan-hon` | Nơi này có anh | 01:14.7–01:54.8 |
+| `nghe-anh-hat` | Nép vào anh và nghe anh hát | 02:25.0–03:16.0 |
+| `stay-please` | Stay, please | 03:22.5–03:58.0 |
+| `co-mau` | Ánh nắng của anh | 01:24.2–02:00.0 |
+| `chung-minh` | Hơn cả yêu | 02:07.5–02:52.5 |
 
 Các mốc được chọn dựa trên cấu trúc đoạn nhạc lặp của file; có thể tinh chỉnh theo câu hát khi người kể nghe thử. MP3 đầu ra 112 kbps, cân bằng âm lượng và hạ nhẹ âm ở cuối đoạn. File gốc không bị thay đổi.
 
-Bấm “Bật nhạc” một lần trên thanh đầu trang để cho phép phát âm thanh. `music.js` dùng duy nhất một phần tử audio, dừng bài cũ ngay khi chuyển cảnh và phát đoạn của cảnh mới. Nhạc phát đến hết đoạn đã cắt, không lặp và không giới hạn 5 giây. Trở lại một cảnh sẽ phát đoạn của cảnh đó từ đầu. Bảy cảnh còn lại chưa có nhạc và giữ im lặng; lựa chọn bật nhạc vẫn được giữ trong phiên xem. Khi tab bị ẩn, nhạc tạm dừng. Nút tắt nhạc luôn có thể dùng độc lập với chế độ “Xem như phim”.
+Bấm “Bật nhạc” một lần trên thanh đầu trang để cho phép phát âm thanh. `music.js` dùng duy nhất một phần tử audio, dừng bài cũ ngay khi chuyển cảnh và phát đoạn của cảnh mới. Nhạc phát đến hết đoạn đã cắt, không lặp và không giới hạn 5 giây. Trở lại một cảnh sẽ phát đoạn của cảnh đó từ đầu. Khi tab bị ẩn, nhạc tạm dừng. Nút tắt nhạc dùng độc lập với chế độ “Xem như phim”. Điện thoại hẹp vẫn giữ đủ nút nhạc, nút tự chạy và menu chương.
