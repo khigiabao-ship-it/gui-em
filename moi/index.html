@@ -659,6 +659,12 @@
       updateRainLabel();
       if (currentScreen === 'success') startLoveRain();
     });
+
+    function openConfessionFromLink() {
+      if (window.location.hash === '#loi-to-tinh') showScreen('confession');
+    }
+    window.addEventListener('hashchange', openConfessionFromLink);
+    openConfessionFromLink();
   </script>
 </body>
 </html>
