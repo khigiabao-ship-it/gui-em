@@ -561,3 +561,24 @@ body[data-chapter="7"] .landscape{opacity:0}
   .stay-card figcaption{font-size:.65rem;margin-top:5px}
 }
 @media(prefers-reduced-motion:reduce){.stay-ambience{transition:none}}
+
+/* Optional music follows the active scene; one tap enables sound. */
+.music-toggle{flex-shrink:0;gap:7px}
+.music-toggle svg{width:20px;height:20px;flex-shrink:0}
+.music-toggle .music-on{display:none}
+.music-toggle[aria-pressed="true"] .music-on{display:block}
+.music-toggle[aria-pressed="true"] .music-off{display:none}
+.music-toggle[aria-pressed="true"]{color:var(--rose)}
+.music-toggle[data-state="unavailable"]{color:inherit}
+@media(max-width:760px){
+  .music-toggle{width:36px;min-width:36px;padding:6px}
+  .music-toggle>span{display:none}
+}
+@media(max-width:480px){
+  .header-actions{gap:4px}
+  .auto-button,.header-actions .icon-button{width:36px;min-width:36px}
+  .auto-button>span{display:none}
+  .auto-button:after,.auto-button[aria-pressed="true"]:after{content:none}
+}
+
+#story-music{display:none}

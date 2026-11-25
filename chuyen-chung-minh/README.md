@@ -36,3 +36,18 @@ Slide “Nép vào anh và nghe anh hát” (`nghe-anh-hat`) nằm ngay sau “N
 Cảnh cuối dùng nền trời đêm xanh dịu, sao thưa và một mặt trăng tròn có bề mặt minh họa (`full-moon-v26.webp`). Trăng được đặt riêng để luôn tròn và hiện trọn trên máy tính lẫn điện thoại; chữ, nút và menu chuyển sang bảng màu sáng trên nền trời. Những cảnh trước vẫn giữ bảng màu và nền đã có.
 
 Chương “Stay, please” (`stay-please`) nằm sau “Nép vào anh và nghe anh hát”. Hai tranh trong cùng một cảnh: ảnh trước gương được phác lại từ ảnh người kể gửi (`stay-mirror-v27.webp`); hai người ngồi bên Hồ Gươm hướng ra Tháp Rùa, mỗi người đọc một bức thư do đối phương viết (`stay-letters-v27.webp`). Giữ áo khoác đen và áo đỏ của bạn nam, cardigan trắng và quần tối màu của bạn nữ trong cả hai tranh. Khung cảnh hồ đối chiếu [Hà Nội Go](https://hanoigo.hanoi.gov.vn/en/place/ho-hoan-kiem-va-den-ngoc-son-ctv-53wqrq). Nền tràn dùng tranh đọc thư làm mờ; hai tranh chính được trình bày cùng nhau, giữ nguyên khung hình. Trên điện thoại ngắn có thể cuộn dọc để xem đủ hai tranh. Menu, thanh chọn cảnh và tự chạy có tổng cộng mười chương; bầu trời trăng tròn vẫn là cảnh cuối.
+
+
+### Nhạc theo cảnh (v29)
+
+Ba file do người kể cung cấp được cắt thành các đoạn điệp khúc riêng:
+
+| Cảnh | Bài | Khoảng lấy từ file gốc |
+| --- | --- | --- |
+| `truoc-khi` | Ngày dài vắng em | 00:43.8–01:16.2 |
+| `threads` | Thế giới ảo tình yêu thật | 00:50.8–01:33.8 |
+| `tin-nhan` | Yêu em qua dòng tin nhắn | 01:19.8–02:09.3 |
+
+Các mốc được chọn dựa trên cấu trúc đoạn nhạc lặp của file; có thể tinh chỉnh theo câu hát khi người kể nghe thử. MP3 đầu ra 112 kbps, cân bằng âm lượng và hạ nhẹ âm ở cuối đoạn. File gốc không bị thay đổi.
+
+Bấm “Bật nhạc” một lần trên thanh đầu trang để cho phép phát âm thanh. `music.js` dùng duy nhất một phần tử audio, dừng bài cũ ngay khi chuyển cảnh và phát đoạn của cảnh mới. Nhạc phát đến hết đoạn đã cắt, không lặp và không giới hạn 5 giây. Trở lại một cảnh sẽ phát đoạn của cảnh đó từ đầu. Bảy cảnh còn lại chưa có nhạc và giữ im lặng; lựa chọn bật nhạc vẫn được giữ trong phiên xem. Khi tab bị ẩn, nhạc tạm dừng. Nút tắt nhạc luôn có thể dùng độc lập với chế độ “Xem như phim”.

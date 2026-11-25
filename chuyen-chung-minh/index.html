@@ -13,8 +13,9 @@
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="./assets/night-garden.webp" as="image" fetchpriority="high">
   <link rel="preload" href="./assets/story-serif.woff" as="font" type="font/woff" crossorigin>
-  <link rel="stylesheet" href="./style.css?v=stay-please-v27">
-  <script src="./story.js?v=stay-please-v27" defer></script>
+  <link rel="stylesheet" href="./style.css?v=chorus-v29">
+  <script src="./story.js?v=chorus-v29" defer></script>
+  <script src="./music.js?v=chorus-v29" defer></script>
 </head>
 <body data-chapter="0">
   <a class="skip-link" href="#story-title-0">Đến câu chuyện</a>
@@ -41,6 +42,11 @@
       <span>chuyện chúng mình<span class="wordmark-sub">MỘT THƯỚC PHIM DÀNH CHO EM</span></span>
     </a>
     <div class="header-actions">
+      <button id="music-toggle" class="text-button music-toggle" type="button" aria-label="Bật nhạc" aria-pressed="false" aria-describedby="music-status" title="Bật nhạc" data-state="off">
+        <svg class="music-off" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm5 4 5 6m0-6-5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="music-on" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm4 3a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Bật nhạc</span>
+      </button>
       <button id="autoplay" class="text-button auto-button" aria-label="Xem như phim" type="button" aria-pressed="false">
         <svg class="play-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6Z" fill="currentColor"/></svg>
         <svg class="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4h3v12H6zm5 0h3v12h-3z" fill="currentColor"/></svg>
@@ -292,6 +298,8 @@
       <button type="button" data-goto="9"><span>Hơn cả yêu</span><small>Những trang tiếp theo của chúng mình</small></button>
     </nav>
   </dialog>
+  <audio id="story-music" preload="metadata" playsinline></audio>
+  <p id="music-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
   <p id="announcer" class="sr-only" aria-live="polite" aria-atomic="true"></p>
   <noscript><p class="noscript-message">Bật JavaScript để xem hoạt cảnh và chuyển qua các chương.</p></noscript>
 </body>
