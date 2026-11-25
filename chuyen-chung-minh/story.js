@@ -17,6 +17,7 @@
     'Nắm lấy tay anh',
     'Nơi này có anh',
     'Nép vào anh và nghe anh hát',
+    'Stay, please',
     'Ánh nắng của anh',
     'Hơn cả yêu'
   ];
@@ -167,7 +168,7 @@
   stage.addEventListener('wheel', event => {
     if (dialog.open || event.ctrlKey || event.metaKey) return;
     // Let readers scroll the actual post without changing the chapter.
-    if (event.target.closest('.threads-scroll') || (['threads', 'tin-nhan'].includes(slides[current].id) && slides[current].scrollHeight > slides[current].clientHeight + 1)) return;
+    if (event.target.closest('.threads-scroll') || (['threads', 'tin-nhan', 'stay-please'].includes(slides[current].id) && slides[current].scrollHeight > slides[current].clientHeight + 1)) return;
     const now = performance.now();
     const delta = (Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX) * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
     if (now < wheelLock) return;
