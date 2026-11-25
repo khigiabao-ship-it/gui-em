@@ -2,6 +2,7 @@
   'use strict';
   const audio = document.querySelector('#story-music');
   const toggle = document.querySelector('#music-toggle');
+  const startButton = document.querySelector('#start-story, #truoc-khi [data-next]');
   const status = document.querySelector('#music-status');
   const slides = [...document.querySelectorAll('.slide')];
   if (!audio || !toggle || !status) return;
@@ -152,6 +153,13 @@
     enabled = true;
     void playSelected();
   }
+
+  // Handle Start before the story changes its label and marks it as Next.
+  startButton?.addEventListener('click', event => {
+    if (!event.isTrusted || startButton.dataset.started === 'true') return;
+    if (waitingForInteraction) playAfterInteraction(event);
+    else if (enabled && (audio.paused || audio.ended)) void playSelected();
+  }, {capture: true});
 
   window.addEventListener('click', event => {
     if (!event.target.closest?.('a[href]:not([href^="#"])')) playAfterInteraction(event);

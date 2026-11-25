@@ -6,6 +6,7 @@
   progressButtons.forEach(button => button.setAttribute('aria-label', button.textContent.trim()));
   const previous = document.querySelector('#previous');
   const next = document.querySelector('#next');
+  const startButton = document.querySelector('#start-story, #truoc-khi [data-next]');
   const autoplay = document.querySelector('#autoplay');
   const dialog = document.querySelector('#chapters-dialog');
   const stage = document.querySelector('#story');
@@ -42,6 +43,10 @@
     index = Math.max(0, Math.min(slides.length - 1, index));
     if (index === current && slides[index].classList.contains('is-active')) return;
     current = index;
+    if (current === 0 && startButton) {
+      delete startButton.dataset.started;
+      startButton.textContent = 'Bắt đầu câu chuyện';
+    }
     elapsed = 0;
     lastTime = 0;
     document.body.style.setProperty('--progress', '0');
@@ -110,7 +115,15 @@
     }
     goTo(Number(button.dataset.goto), {focus: isDialogButton});
   }));
-  document.querySelectorAll('[data-next]').forEach(button => button.addEventListener('click', () => goTo(current + 1, {focus: true})));
+  startButton?.addEventListener('click', event => {
+    if (startButton.dataset.started === 'true') {
+      if (event.detail <= 1) goTo(current + 1, {focus: true});
+      return;
+    }
+    // The first click gives the opening scene and its song time to play.
+    startButton.dataset.started = 'true';
+    startButton.textContent = 'Cảnh tiếp';
+  });
   previous.addEventListener('click', () => goTo(current - 1));
   next.addEventListener('click', () => goTo(current === slides.length - 1 ? 0 : current + 1));
   document.querySelector('#replay').addEventListener('click', () => {

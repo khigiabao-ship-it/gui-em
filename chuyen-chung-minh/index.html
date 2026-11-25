@@ -14,8 +14,8 @@
   <link rel="preload" href="./assets/night-garden.webp" as="image" fetchpriority="high">
   <link rel="preload" href="./assets/story-serif.woff" as="font" type="font/woff" crossorigin>
   <link rel="stylesheet" href="./style.css?v=chorus-v30">
-  <script src="./story.js?v=chorus-v30" defer></script>
-  <script src="./music.js?v=audio-autoplay-v1" defer></script>
+  <script src="./story.js?v=intro-first-v1" defer></script>
+  <script src="./music.js?v=intro-first-v1" defer></script>
 </head>
 <body data-chapter="0">
   <a class="skip-link" href="#story-title-0">Đến câu chuyện</a>
@@ -64,7 +64,7 @@
         <p class="eyebrow"><span class="tiny-line"></span>KHI CÂU CHUYỆN CHƯA CÓ EM</p>
         <h1 id="story-title-0" tabindex="-1">Thế giới anh,<br> chỉ một <em>màu đen.</em></h1>
         <p class="story-text">Đi làm. Về nhà. Ăn uống. Ngủ nghỉ.<br> Ngày này qua ngày khác, cuộc sống của anh cứ lặp lại như thế.</p>
-        <button class="primary-button" type="button" data-next>Bắt đầu câu chuyện</button>
+        <button class="primary-button" type="button" id="start-story">Bắt đầu câu chuyện</button>
         <p class="handwritten intro-note">Rồi một người xuất hiện…</p>
       </div>
       <div class="stage-art routine-art" aria-hidden="true">
