@@ -48,7 +48,8 @@
       src: './assets/audio/hon-ca-yeu-chorus-v30.mp3'
     }
   };
-  let enabled = false;
+  let enabled = true;
+  let waitingForInteraction = false;
   let chapter = '';
   let track = null;
   let generation = 0;
@@ -69,7 +70,7 @@
       playing: track ? 'Đang phát điệp khúc: ' + track.title + '.' : '',
       ended: 'Đã hết điệp khúc. Chuyển cảnh để nghe bài tiếp theo.',
       unavailable: 'Cảnh này chưa có nhạc.',
-      blocked: 'Bấm Bật nhạc một lần nữa để trình duyệt cho phép phát âm thanh.',
+      blocked: 'Chạm vào trang để bắt đầu phát nhạc.',
       error: 'Chưa tải được nhạc. Bấm Bật nhạc để thử lại.'
     };
     const message = messages[state] || '';
@@ -100,7 +101,8 @@
       enabled = false;
       resumeOnReturn = false;
       audio.pause();
-      render(error.name === 'NotAllowedError' ? 'blocked' : 'error');
+      waitingForInteraction = error.name === 'NotAllowedError';
+      render(waitingForInteraction ? 'blocked' : 'error');
     }
   }
 
@@ -121,11 +123,12 @@
       audio.load();
     }
     if (enabled) void playSelected();
-    else render('off');
+    else render(waitingForInteraction ? 'blocked' : 'off');
   }
 
   toggle.addEventListener('click', () => {
     generation++;
+    waitingForInteraction = false;
     enabled = !enabled;
     resumeOnReturn = false;
     if (!enabled) {
@@ -139,6 +142,33 @@
     }
     void playSelected();
   });
+  function playAfterInteraction(event) {
+    if (!waitingForInteraction || !event.isTrusted || toggle.contains(event.target)) return;
+
+    // The story may have changed scenes in this same gesture.
+    // Select the new track before playing it within the gesture handler.
+    selectChapter();
+    waitingForInteraction = false;
+    enabled = true;
+    void playSelected();
+  }
+
+  window.addEventListener('click', event => {
+    if (!event.target.closest?.('a[href]:not([href^="#"])')) playAfterInteraction(event);
+  });
+  window.addEventListener('pointerup', event => {
+    // A swipe can advance the story without generating a click.
+    if (event.pointerType === 'touch' && !event.target.closest?.('a, button')) {
+      playAfterInteraction(event);
+    }
+  }, {passive: true});
+  window.addEventListener('keydown', event => {
+    const navigationKeys = ['ArrowLeft', 'ArrowRight', 'Home', 'End', 'PageUp', 'PageDown'];
+    if (!event.altKey && !event.ctrlKey && !event.metaKey && navigationKeys.includes(event.key)) {
+      playAfterInteraction(event);
+    }
+  });
+
   audio.addEventListener('ended', () => {
     if (!audio.ended || !enabled) return;
     resumeOnReturn = false;
