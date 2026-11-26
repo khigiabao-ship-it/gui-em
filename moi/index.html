@@ -83,7 +83,7 @@
     .yes-heart { position:relative; width:min(240px,100%); height:210px; margin:0 0 10px; flex-shrink:0; }
     .yes-heart canvas { display:block; width:100%; height:100%; }
     .success-screen { padding:22px 0 16px; }
-    .success-screen h2 { font-size:clamp(24px,3vw,31px); max-width:390px; line-height:1.4; margin:15px 0 17px; text-wrap:pretty; }
+    .celebration-title { font:400 clamp(24px,3vw,31px)/1.4 var(--serif); letter-spacing:-.025em; max-width:390px; margin:15px 0 17px; text-wrap:pretty; }
     .success-copy { font-size:13px; line-height:1.9; color:#987e81; max-width:280px; margin:0 0 24px; }
     .success-tag { margin-top:17px; border:1px solid #e9d5d3; border-radius:30px; color:#9d6575; padding:8px 14px; font-size:10px; letter-spacing:.05em; background:#fbf3ee; }
     .success-screen .text-button { margin-top:13px; }
@@ -125,6 +125,51 @@
     .yt-music-title { color:#873448; font-size:12px; letter-spacing:.02em; margin:0 0 10px; }
     .yt-music-panel iframe { display:block; width:100%; height:210px; border:0; border-radius:8px; background:#241e20; }
     .yt-music-note { margin:9px 0 0; color:#8b7779; font-size:11px; line-height:1.55; }
+
+    .signing-screen { padding:20px 0 10px; }
+    .signing-paper, .signed-paper {
+      width:min(100%,480px);
+      padding:clamp(16px,3vw,28px) clamp(12px,3vw,25px);
+      border:1px solid #ead6d4;
+      border-top:3px solid #c68b99;
+      border-radius:5px;
+      background:var(--paper);
+      box-shadow:0 8px 24px #73404c10;
+    }
+    .paper-label { margin:0; color:var(--rose-dark); font-size:11px; letter-spacing:.09em; text-transform:uppercase; }
+    .signing-paper h2, .signed-paper h2 { margin:11px 0; font-size:clamp(23px,3vw,31px); }
+    .signing-hint, .promise-copy { margin:0; color:#7b6165; font-size:13px; line-height:1.65; }
+    .signature-frame {
+      position:relative;
+      overflow:hidden;
+      margin:16px 0;
+      border:1px solid #e5d2cf;
+      border-radius:6px;
+      background:#fcf5f1;
+    }
+    .signature-frame::before {
+      content:"";
+      position:absolute;
+      inset:auto 12px 24%;
+      border-top:1px dashed #ddc3c6;
+      pointer-events:none;
+    }
+    .signature-pad { position:relative; display:block; width:100%; height:auto; aspect-ratio:60 / 31; touch-action:none; user-select:none; cursor:crosshair; }
+    .signature-ink { fill:none; stroke:#5b3542; stroke-width:3.6; stroke-linecap:round; stroke-linejoin:round; }
+    .signing-paper .primary:disabled { opacity:.52; transform:none; background:var(--rose); box-shadow:none; }
+    .signing-tools { display:flex; flex-wrap:wrap; justify-content:center; gap:4px 10px; }
+    .signing-tools .text-button { margin:4px 0 0; min-height:44px; }
+    .signing-tools .text-button:disabled { opacity:.48; }
+    .signing-screen, .success-screen { scroll-margin-top:16px; }
+    .success-screen { animation:none; }
+    .signed-paper { position:relative; z-index:31; margin:0 0 22px; }
+    .signed-paper .success-tag { display:inline-block; }
+    .promise-heart { width:26px; height:26px; color:var(--rose); }
+    .promise-signatures { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(10px,2vw,20px); margin-top:20px; }
+    .promise-party { min-width:0; color:var(--rose-dark); font-size:11px; line-height:1.5; }
+    .promise-party strong { display:block; color:var(--ink); font:600 17px/1.3 var(--serif); }
+    .signature-preview { display:block; width:100%; height:clamp(57px,10vw,88px); margin:4px 0 0; border-bottom:1px solid var(--line); }
+    .signature-preview path { vector-effect:non-scaling-stroke; stroke-width:1.8px; }
   </style>
 </head>
 <body>
@@ -197,16 +242,63 @@
             </div>
             <p class="tease" id="tease" role="status" aria-live="polite">Hình như nút “Không” hơi nhút nhát…</p>
           </section>
+          <section class="screen signing-screen" id="screen-sign-b" aria-labelledby="sign-title-b" hidden>
+            <div class="signing-paper">
+              <p class="paper-label">Bên B · Lượt ký 1/2</p>
+              <h2 id="sign-title-b" tabindex="-1">Manh ký tên nhé</h2>
+              <p class="signing-hint" id="sign-hint-b">Ký vào ô dưới bằng ngón tay hoặc chuột.</p>
+              <div class="signature-frame">
+                <svg class="signature-pad" id="signature-pad-b" viewBox="0 0 480 248" role="img" aria-label="Ô ký tên của Manh" aria-describedby="sign-hint-b"><g class="signature-ink"></g></svg>
+              </div>
+              <button class="primary" id="next-signature-b" type="button" disabled>Chuyển cho Gbao ký <span aria-hidden="true">→</span></button>
+              <div class="signing-tools">
+                <button class="text-button" id="back-signature-b" type="button">Quay lại</button>
+                <button class="text-button" id="clear-signature-b" type="button" disabled>Xóa nét ký</button>
+              </div>
+            </div>
+          </section>
+          <section class="screen signing-screen" id="screen-sign-a" aria-labelledby="sign-title-a" hidden>
+            <div class="signing-paper">
+              <p class="paper-label">Bên A · Lượt ký 2/2</p>
+              <h2 id="sign-title-a" tabindex="-1">Gbao ký tên nhé</h2>
+              <p class="signing-hint" id="sign-hint-a">Ký vào ô dưới bằng ngón tay hoặc chuột.</p>
+              <div class="signature-frame">
+                <svg class="signature-pad" id="signature-pad-a" viewBox="0 0 480 248" role="img" aria-label="Ô ký tên của Gbao" aria-describedby="sign-hint-a"><g class="signature-ink"></g></svg>
+              </div>
+              <button class="primary" id="next-signature-a" type="button" disabled>Xem bản cam kết <span aria-hidden="true">→</span></button>
+              <div class="signing-tools">
+                <button class="text-button" id="back-signature-a" type="button">Quay lại</button>
+                <button class="text-button" id="clear-signature-a" type="button" disabled>Xóa nét ký</button>
+              </div>
+            </div>
+          </section>
           <section class="screen success-screen" id="screen-success" aria-labelledby="success-title" hidden>
+            <article class="signed-paper" aria-labelledby="success-title">
+              <svg class="promise-heart" aria-hidden="true"><use href="#heart-line"/></svg>
+              <h2 id="success-title" tabindex="-1">Bản cam kết của chúng mình</h2>
+              <p class="promise-copy">Hai đứa đồng ý làm người yêu của nhau. Mình sẽ quan tâm, lắng nghe và tôn trọng nhau nhé.</p>
+              <div class="promise-signatures">
+                <div class="promise-party">
+                  Bên A
+                  <strong>Gbao</strong>
+                  <svg class="signature-preview" id="signed-a" viewBox="0 0 480 248" role="img" aria-label="Chữ ký của Gbao"></svg>
+                </div>
+                <div class="promise-party">
+                  Bên B
+                  <strong>Manh</strong>
+                  <svg class="signature-preview" id="signed-b" viewBox="0 0 480 248" role="img" aria-label="Chữ ký của Manh"></svg>
+                </div>
+              </div>
+              <div class="success-tag" id="success-date"></div>
+            </article>
             <div class="yes-heart" role="img" aria-label="Trái tim hạt sáng đang đập"><canvas id="particle-heart" aria-hidden="true"></canvas></div>
             <div class="little-label">Một khởi đầu thật đẹp</div>
-            <h2 id="success-title" tabindex="-1">Thế là chúng mình chính thức có danh phận rồi nhé? Không được trêu anh nữa đâu</h2>
+            <h3 class="celebration-title">Thế là chúng mình chính thức có danh phận rồi nhé? Không được trêu anh nữa đâu</h3>
             <p class="success-copy">Cảm ơn em đã đồng ý.<br>Những ngày bình thường sắp tới,<br>anh muốn được cùng em làm chúng đặc biệt hơn.</p>
             <button class="primary" id="share-button" type="button">Gửi anh lời đồng ý <svg aria-hidden="true"><use href="#heart-line"/></svg></button>
-            <div class="success-tag" id="success-date"></div>
             <div class="subtle-actions"><button class="text-button" id="replay-button" type="button">Đọc lại lá thư <span aria-hidden="true">↺</span></button><button class="text-button" id="rain-toggle" type="button" aria-pressed="false">Tạm dừng mưa chữ <span aria-hidden="true">Ⅱ</span></button></div>
           </section>
-          <div class="card-footer" id="progress" aria-label="Trang 1 trên 5"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="card-footer" id="progress" aria-label="Trang 1 trên 7"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
         </div>
       </section>
     </main>
@@ -234,7 +326,7 @@
     };
 
     const $ = (id) => document.getElementById(id);
-    const screenNames = ['envelope', 'letter', 'question', 'confession', 'success'];
+    const screenNames = ['envelope', 'letter', 'question', 'confession', 'sign-b', 'sign-a', 'success'];
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let currentScreen = 'envelope';
     let escapeCount = 0;
@@ -280,7 +372,7 @@
       $('tease').textContent = 'Hình như nút “Không” hơi nhút nhát…';
     }
 
-    function showScreen(name) {
+    function showScreen(name, { scroll = false } = {}) {
       if (!screenNames.includes(name)) return;
       if (name !== 'confession') resetNoButton();
       if (name !== 'success') stopLoveRain();
@@ -291,8 +383,9 @@
       [...$('progress').children].forEach((dot, i) => dot.classList.toggle('active', i === step));
       $('progress').setAttribute('aria-label', 'Trang ' + (step + 1) + ' trên ' + screenNames.length);
       // Đặt tiêu điểm vào nội dung mới để dùng được bằng bàn phím và trình đọc màn hình.
-      const heading = $('screen-' + name).querySelector('h2');
-      heading.focus({ preventScroll: true });
+      const screen = $('screen-' + name);
+      screen.querySelector('h2').focus({ preventScroll: true });
+      if (scroll) screen.scrollIntoView({ block:'start' });
     }
 
     $('open-envelope').addEventListener('click', () => showScreen('letter'));
@@ -385,13 +478,110 @@
     window.addEventListener('resize', keepNoInView);
     if (window.visualViewport) window.visualViewport.addEventListener('resize', keepNoInView);
 
+
+    function createSignaturePad(party) {
+      const pad = $('signature-pad-' + party);
+      const ink = pad.querySelector('g');
+      const next = $('next-signature-' + party);
+      const clear = $('clear-signature-' + party);
+      let stroke = null;
+
+      function pointerPoint(event) {
+        const rect = pad.getBoundingClientRect();
+        if (!rect.width || !rect.height) return null;
+        const { width, height } = pad.viewBox.baseVal;
+        return {
+          x:Math.round(width * Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width))),
+          y:Math.round(height * Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height))),
+        };
+      }
+
+      function updateControls() {
+        next.disabled = clear.disabled = stroke !== null || ink.childElementCount === 0;
+      }
+
+      function extendStroke(event) {
+        if (stroke?.pointerId !== event.pointerId) return;
+        const point = pointerPoint(event);
+        if (!point) return;
+
+        if (!stroke.path) {
+          if (Math.hypot(point.x - stroke.start.x, point.y - stroke.start.y) < 4) return;
+          stroke.path = document.createElementNS(pad.namespaceURI, 'path');
+          stroke.data = 'M' + stroke.start.x + ' ' + stroke.start.y;
+          ink.append(stroke.path);
+        }
+        stroke.data += ' L' + point.x + ' ' + point.y;
+        stroke.path.setAttribute('d', stroke.data);
+      }
+
+      function finishStroke(event) {
+        if (stroke?.pointerId !== event.pointerId) return;
+        stroke = null;
+        updateControls();
+      }
+
+      function reset() {
+        const pointerId = stroke?.pointerId;
+        stroke = null;
+        if (pointerId !== undefined && pad.hasPointerCapture(pointerId)) pad.releasePointerCapture(pointerId);
+        ink.replaceChildren();
+        updateControls();
+      }
+
+      pad.addEventListener('pointerdown', event => {
+        if (stroke || !event.isPrimary || event.button !== 0) return;
+        const start = pointerPoint(event);
+        if (!start) return;
+        pad.setPointerCapture(event.pointerId);
+        stroke = { pointerId:event.pointerId, start, path:null, data:'' };
+        updateControls();
+      });
+      pad.addEventListener('pointermove', extendStroke);
+      pad.addEventListener('pointerup', event => {
+        extendStroke(event);
+        finishStroke(event);
+      });
+      pad.addEventListener('pointercancel', finishStroke);
+      pad.addEventListener('lostpointercapture', finishStroke);
+      clear.addEventListener('click', reset);
+
+      function copyTo(preview) {
+        const { x, y, width, height } = ink.getBBox();
+        const margin = 14;
+        preview.setAttribute('viewBox', [x - margin, y - margin, width + 2 * margin, height + 2 * margin].join(' '));
+        preview.replaceChildren(ink.cloneNode(true));
+      }
+
+      return { reset, copyTo };
+    }
+
+    const signatureB = createSignaturePad('b');
+    const signatureA = createSignaturePad('a');
+    $('back-signature-b').addEventListener('click', () => showScreen('confession', { scroll:true }));
+    $('back-signature-a').addEventListener('click', () => showScreen('sign-b', { scroll:true }));
+    $('next-signature-b').addEventListener('click', () => {
+      if (currentScreen !== 'sign-b' || $('next-signature-b').disabled) return;
+      signatureB.copyTo($('signed-b'));
+      showScreen('sign-a', { scroll:true });
+    });
+
     $('to-confession').addEventListener('click', () => showScreen('confession'));
     $('yes-button').addEventListener('click', () => {
       // Bỏ qua cú bấm đúp còn sót lại ngay sau khi nút Không né đi.
-      if (performance.now() - lastNoInteraction < 650) return;
+      if (currentScreen !== 'confession' || performance.now() - lastNoInteraction < 650) return;
+      signatureB.reset();
+      signatureA.reset();
+      $('signed-b').replaceChildren();
+      $('signed-a').replaceChildren();
       const date = new Intl.DateTimeFormat('vi-VN', { day:'2-digit', month:'2-digit', year:'numeric' }).format(new Date());
       $('success-date').textContent = 'Ngày chúng mình bắt đầu · ' + date;
-      showScreen('success');
+      showScreen('sign-b', { scroll:true });
+    });
+    $('next-signature-a').addEventListener('click', () => {
+      if (currentScreen !== 'sign-a' || $('next-signature-a').disabled) return;
+      signatureA.copyTo($('signed-a'));
+      showScreen('success', { scroll:true });
       celebrate();
       startParticleHeart();
       rainPaused = false;
